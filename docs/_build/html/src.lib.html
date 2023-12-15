@@ -141,42 +141,116 @@
 <dt class="sig sig-object py" id="src.lib.Camera.Camera">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">Camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_width:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_per_pixel:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vfov:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">40.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookfrom:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">0.0</span> <span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookat:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">0.0</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vup:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">1.0</span> <span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera" title="Link permanente para esta definição"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor de uma câmera.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>image_width: int - Largura da imagem em pixels.</p></li>
+<li><p>samples_per_pixel: int - Quantidade de amostras (raios) por pixel.</p></li>
+<li><p>max_depth: int - Quantidade máxima de reflexões/refrações de um raio.</p></li>
+<li><p>vfov: float - Campo de visão vertical em graus.</p></li>
+<li><p>lookfrom: Point3 - Ponto de origem da câmera.</p></li>
+<li><p>lookat: Point3 - Ponto para onde a câmera está olhando.</p></li>
+<li><p>vup: Vec3 - Vetor que indica a direção “para cima” da câmera.</p></li>
+</ul>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.Camera.Camera.get_ray">
 <span class="sig-name descname"><span class="pre">get_ray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.get_ray"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.get_ray" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Retorna um raio que passa pelo pixel (i, j).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>i: int - Posição horizontal do pixel.</p></li>
+<li><p>j: int - Posição vertical do pixel.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ray - Raio que passa pelo pixel (i, j).</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.Camera.Camera.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.initialize"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.initialize" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Inicializa a câmera. Calcula os parâmetros necessários para renderizar a imagem.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.Camera.Camera.pixel_sample_square">
 <span class="sig-name descname"><span class="pre">pixel_sample_square</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.pixel_sample_square"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.pixel_sample_square" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Retorna um vetor aleatório dentro do quadrado de pixel.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.Camera.Camera.ray_color">
 <span class="sig-name descname"><span class="pre">ray_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.HittableList.HittableList" title="src.lib.HittableList.HittableList"><span class="pre">HittableList</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.ray_color"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.ray_color" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Retorna a cor de um raio.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.Camera.Camera.render">
 <span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.HittableList.HittableList" title="src.lib.HittableList.HittableList"><span class="pre">HittableList</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.lib.Image.Image" title="src.lib.Image.Image"><span class="pre">Image</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.render"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.render" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Renderiza a cena (informada no mundo). Além de salvar em disco no formato PNG, também mostra a imagem (no notebook).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>world: HittableList - Lista de objetos que compõem a cena.</p></li>
+<li><p>filename: str - Nome do arquivo de imagem a ser salvo.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Image - Imagem renderizada.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.lib.Camera.linear_to_gamma">
 <span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">linear_to_gamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear_component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#linear_to_gamma"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.linear_to_gamma" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Converte um componente linear de cor para um componente gamma.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>linear_component: float - Componente linear de cor.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - Componente gamma de cor.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.lib.Camera.transform_color">
 <span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">transform_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel_color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_per_pixel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#transform_color"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.transform_color" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Transforma uma cor linear em uma cor gamma. Também aplica a média das amostras por pixel.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>pixel_color: Color - Cor linear.</p></li>
+<li><p>samples_per_pixel: int - Quantidade de amostras por pixel.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+</dd></dl>
 
 </section>
 <section id="module-src.lib.HitRecord">
@@ -194,6 +268,7 @@
 <li><p>normal: Vec3 - Vetor normal do ponto de acerto.</p></li>
 <li><p>t: float - Tempo t do raio no ponto de acerto.</p></li>
 <li><p>ray: Ray - Raio que utilizado</p></li>
+<li><p>material: Material - Material do objeto que foi acertado.</p></li>
 </ul>
 </div></blockquote>
 <dl class="py property">
@@ -201,6 +276,12 @@
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">front_face</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.front_face" title="Link permanente para esta definição"></a></dt>
 <dd><p>Booleano que indica se o raio acertou o objeto pela frente ou por trás.</p>
 <p>Se for verdadeiro (True), o raio acertou o objeto pela frente. Se for falso (False), o raio acertou o objeto por trás.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.material">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">material</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.material" title="Link permanente para esta definição"></a></dt>
+<dd><p>Material do objeto que foi acertado.</p>
 </dd></dl>
 
 <dl class="py property">
