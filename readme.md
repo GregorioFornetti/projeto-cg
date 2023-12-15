@@ -5,8 +5,11 @@ Repositório contendo o trabalho final da disciplina de computação gráfica (2
 Alunos: 
 
 Guilherme Fumagali Marques - RA: 792182
+
 Gregório Fornetti Azevedo - RA: 792181
+
 Vinicius Gabriel Nanini da Silva - RA: 795181
+
 Rodrigo Henrique Amaral Araujo - RA: 792241
 
 ## Descrição do trabalho
@@ -34,6 +37,7 @@ A documentação do código criado pode ser [acessado online](https://gregoriofo
 - [Pillow](https://pypi.org/project/Pillow/): para salvar e ler imagens em diversos formatos.
 - [Sphinx](https://www.sphinx-doc.org/pt_BR/master/): gerador de documentação a partir dos comentários de documentação incluídos no próprio código.
 - [tqdm](https://tqdm.github.io/): para indicar progresso das operações/funções mais demoradas.
+- [opencv](https://opencv.org/): para gerar o vídeo da animação a partir dos frames
 
 ### Instalação
 
