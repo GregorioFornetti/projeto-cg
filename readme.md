@@ -5,8 +5,11 @@ Repositório contendo o trabalho final da disciplina de computação gráfica (2
 Alunos: 
 
 Guilherme Fumagali Marques - RA: 792182
+
 Gregório Fornetti Azevedo - RA: 792181
+
 Vinicius Gabriel Nanini da Silva - RA: 795181
+
 Rodrigo Henrique Amaral Araujo - RA: 792241
 
 ## Descrição do trabalho
