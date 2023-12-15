@@ -1,5 +1,11 @@
+'''
+Código principal para gerar a animação.
 
+Nele, você escolherá a qualidade da animação e os frames que serão gerados.
+Como existem mais de uma pessoa no projeto, é possível separar a geração dos frames entre as pessoas.
+'''
 from Animation import Animation
+import os
 
 possible_configs = {
     'low': {
@@ -36,6 +42,11 @@ animation = Animation(
 start_frame = int(input('Digite o frame inicial: '))
 end_frame = int(input('Digite o frame final: '))
 
+if not os.path.exists('animation_frames'):
+    os.mkdir('animation_frames')
+if not os.path.exists(f'animation_frames/{possible_configs_keys[config_index]}'):
+    os.mkdir(f'animation_frames/{possible_configs_keys[config_index]}')
+
 for i in range(start_frame, end_frame + 1):
     print(f'Gerando frame {i}...')
-    animation.generate_frame(i, f'frames/frame_{i}.png')
+    animation.generate_frame(i, f'animation_frames/{possible_configs_keys[config_index]}/frame_{i}.png')

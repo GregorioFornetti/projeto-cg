@@ -33,7 +33,7 @@ class Animation:
         self.CAMERA_ROTATION_SPEED = 1 / 5  # A cada 5 segundos, a câmera se move 1 
 
         # Construindo a cena inicial:
-        self.cube = Model("../objs/Cube.obj", Metal(Color([0.7, 0.7, 0.7]), 0.0))
+        self.cube = Model("objs/Cube.obj", Metal(Color([0.7, 0.7, 0.7]), 0.0))
 
         self.first_sphere = Sphere(
             Point3([-2, 0, 0]),
