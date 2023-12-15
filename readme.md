@@ -26,7 +26,7 @@ O projeto será avaliado considerando os seguinte requisitos:
 
 ### Documentação online
 
-A documentação do código criado pode ser [acessado online]()
+A documentação do código criado pode ser [acessado online](https://gregoriofornetti.github.io/projeto-cg/docs/_build/html/index.html)
 
 ### Principais bibliotecas utilizadas no projeto
 
