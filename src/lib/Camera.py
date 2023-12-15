@@ -17,9 +17,37 @@ from math import sqrt
 
 
 def linear_to_gamma(linear_component: float) -> float:
+    '''
+    Converte um componente linear de cor para um componente gamma.
+
+    ---
+
+    Parâmetros:
+
+        - linear_component: float - Componente linear de cor.
+    
+    ---
+
+    Retorno:
+
+        - float - Componente gamma de cor.
+    '''
     return sqrt(linear_component)
 
 def transform_color(pixel_color: Color, samples_per_pixel: int) -> Color:
+    '''
+    Transforma uma cor linear em uma cor gamma. Também aplica a média das amostras por pixel.
+
+    ---
+
+    Parâmetros:
+
+        - pixel_color: Color - Cor linear.
+
+        - samples_per_pixel: int - Quantidade de amostras por pixel.
+
+    ---
+    '''
     r = pixel_color.x
     g = pixel_color.y
     b = pixel_color.z
@@ -41,6 +69,27 @@ def transform_color(pixel_color: Color, samples_per_pixel: int) -> Color:
 class Camera:
 
     def __init__(self, image_width: int = 400, samples_per_pixel: int = 100, max_depth: int = 10, vfov: float = 40.0, lookfrom: Point3 = Point3([0, 0, -1]), lookat: Point3 = Point3([0, 0, 0]), vup: Vec3 = Vec3([0, 1, 0])):
+        '''
+        Construtor de uma câmera.
+
+        ---
+
+        Parâmetros:
+
+            - image_width: int - Largura da imagem em pixels.
+
+            - samples_per_pixel: int - Quantidade de amostras (raios) por pixel.
+
+            - max_depth: int - Quantidade máxima de reflexões/refrações de um raio.
+
+            - vfov: float - Campo de visão vertical em graus.
+
+            - lookfrom: Point3 - Ponto de origem da câmera.
+
+            - lookat: Point3 - Ponto para onde a câmera está olhando.
+
+            - vup: Vec3 - Vetor que indica a direção "para cima" da câmera.
+        '''
         self.image_width = image_width
         self.samples_per_pixel = samples_per_pixel
         self.max_depth = max_depth
@@ -50,6 +99,9 @@ class Camera:
         self.vup = vup
 
     def initialize(self):
+        '''
+        Inicializa a câmera. Calcula os parâmetros necessários para renderizar a imagem.
+        '''
         self.aspect_ratio = 16.0 / 9.0
 
         self.image_height = int(self.image_width / self.aspect_ratio)
@@ -82,6 +134,9 @@ class Camera:
         # Precisa adicionar 0,5 da distancia de separação dos pixels. O canto esquerdo do viewport não é o mesmo que o ponto 0,0 da imagem. O viewport precisa ter uma borda de 0,5 espaçamento de pixel para cada lado.
 
     def ray_color(self, ray: Ray, depth: int, world: HittableList) -> Color:
+        '''
+        Retorna a cor de um raio.
+        '''
         if depth <= 0:
             return Color([0, 0, 0])
 
@@ -97,6 +152,23 @@ class Camera:
         return (1.0 - t) * Color([1.0, 1.0, 1.0]) + t * Color([0.5, 0.7, 1.0])
     
     def render(self, world: HittableList, filename: str) -> Image:
+        '''
+        Renderiza a cena (informada no mundo). Além de salvar em disco no formato PNG, também mostra a imagem (no notebook).
+
+        ---
+
+        Parâmetros:
+
+            - world: HittableList - Lista de objetos que compõem a cena.
+
+            - filename: str - Nome do arquivo de imagem a ser salvo.
+
+        ---
+
+        Retorno:
+
+            - Image - Imagem renderizada.
+        '''
         self.initialize()
 
         image = Image(self.image_width, self.image_height)
@@ -115,12 +187,32 @@ class Camera:
         return image
 
     def get_ray(self, i: int, j: int) -> Ray:
+        '''
+        Retorna um raio que passa pelo pixel (i, j).
+
+        ---
+
+        Parâmetros:
+
+            - i: int - Posição horizontal do pixel.
+
+            - j: int - Posição vertical do pixel.
+        
+        ---
+
+        Retorno:
+
+            - Ray - Raio que passa pelo pixel (i, j).
+        '''
         pixel_center = self.pixel00_loc + (i * self.pixel_delta_u) + (j * self.pixel_delta_v)
         pixel_sample = pixel_center + self.pixel_sample_square()
         
         return Ray(self.camera_center, pixel_sample - self.camera_center)
 
     def pixel_sample_square(self) -> Vec3:
+        '''
+        Retorna um vetor aleatório dentro do quadrado de pixel.
+        '''
         px = -0.5 + random_double()
         py = -0.5 + random_double()
         return (px * self.pixel_delta_u) + (py * self.pixel_delta_v)

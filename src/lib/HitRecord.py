@@ -21,8 +21,10 @@ class HitRecord:
             - t: float - Tempo t do raio no ponto de acerto.
 
             - ray: Ray - Raio que utilizado
+
+            - material: Material - Material do objeto que foi acertado.
         '''
-        self.material = material
+        self.__material = material
         self.__p = p
         self.__t = t
         self.set_normal(normal, ray)
@@ -67,3 +69,10 @@ class HitRecord:
         Se for verdadeiro (True), o raio acertou o objeto pela frente. Se for falso (False), o raio acertou o objeto por trás.
         '''
         return self.__front_face
+    
+    @property
+    def material(self):
+        '''
+        Material do objeto que foi acertado.
+        '''
+        return self.__material
