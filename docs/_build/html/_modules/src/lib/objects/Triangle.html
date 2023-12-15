@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib.objects.Triangle &mdash; documentação CG </title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">projeto-cg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">src.lib.objects.Triangle</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte para src.lib.objects.Triangle</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">lib.vec.Vec3</span> <span class="kn">import</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">Vec3</span>
+<span class="kn">from</span> <span class="nn">lib.objects.Hittable</span> <span class="kn">import</span> <span class="n">Hittable</span>
+<span class="kn">from</span> <span class="nn">lib.Ray</span> <span class="kn">import</span> <span class="n">Ray</span>
+<span class="kn">from</span> <span class="nn">lib.HitRecord</span> <span class="kn">import</span> <span class="n">HitRecord</span>
+<span class="kn">from</span> <span class="nn">lib.Interval</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="kn">from</span> <span class="nn">lib.materials.Material</span> <span class="kn">import</span> <span class="n">Material</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="barycentric"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.Triangle.barycentric">[documentos]</a><span class="k">def</span> <span class="nf">barycentric</span><span class="p">(</span><span class="n">point1</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">point2</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">point3</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">intersect_point</span><span class="p">:</span> <span class="n">Point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Calcula as coordenadas baricêntricas de um ponto em relação a um triângulo.</span>
+
+<span class="sd">    ---</span>
+
+<span class="sd">    Parâmetros:</span>
+
+<span class="sd">        - point1: Point3 - Primeiro vértice do triângulo.</span>
+
+<span class="sd">        - point2: Point3 - Segundo vértice do triângulo.</span>
+
+<span class="sd">        - point3: Point3 - Terceiro vértice do triângulo.</span>
+<span class="sd">        </span>
+<span class="sd">        - intersect_point: Point3 - Ponto a ser calculado as coordenadas baricêntricas.</span>
+<span class="sd">    </span>
+<span class="sd">    ---</span>
+
+<span class="sd">    Retorno:</span>
+
+<span class="sd">        - tuple[float, float, float] - Tupla contendo as coordenadas baricêntricas do ponto.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># https://ceng2.ktu.edu.tr/~cakir/files/grafikler/Texture_Mapping.pdf</span>
+    
+    <span class="n">v0</span> <span class="o">=</span> <span class="n">point2</span> <span class="o">-</span> <span class="n">point1</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">point3</span> <span class="o">-</span> <span class="n">point1</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="n">point1</span>
+
+    <span class="n">d00</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+    <span class="n">d01</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+    <span class="n">d11</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+    <span class="n">d20</span> <span class="o">=</span> <span class="n">v2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+    <span class="n">d21</span> <span class="o">=</span> <span class="n">v2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+
+    <span class="n">denom</span> <span class="o">=</span> <span class="n">d00</span> <span class="o">*</span> <span class="n">d11</span> <span class="o">-</span> <span class="n">d01</span> <span class="o">*</span> <span class="n">d01</span>
+
+    <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">d11</span> <span class="o">*</span> <span class="n">d20</span> <span class="o">-</span> <span class="n">d01</span> <span class="o">*</span> <span class="n">d21</span><span class="p">)</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">d00</span> <span class="o">*</span> <span class="n">d21</span> <span class="o">-</span> <span class="n">d01</span> <span class="o">*</span> <span class="n">d20</span><span class="p">)</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">v</span> <span class="o">-</span> <span class="n">w</span>
+
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span></div>
+
+
+<div class="viewcode-block" id="Triangle"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.Triangle.Triangle">[documentos]</a><span class="k">class</span> <span class="nc">Triangle</span><span class="p">(</span><span class="n">Hittable</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex_1</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">vertex_2</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">vertex_3</span><span class="p">:</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">material</span><span class="p">:</span> <span class="n">Material</span><span class="p">,</span> <span class="n">normals</span><span class="p">:</span> <span class="s1">&#39;list[Point3, Point3, Point3]&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor de um triângulo.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - vertex_1: Point3 - Primeiro vértice do triângulo.</span>
+
+<span class="sd">            - vertex_2: Point3 - Segundo vértice do triângulo.</span>
+
+<span class="sd">            - vertex_3: Point3 - Terceiro vértice do triângulo.</span>
+
+<span class="sd">            - material: Material - Material do triângulo.</span>
+
+<span class="sd">            - normals: tuple[Point3, Point3, Point3] - Tupla contendo as normais de cada vértice do triângulo. Caso não seja especificado, as normais serão calculadas automaticamente.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__material</span> <span class="o">=</span> <span class="n">material</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vertex_1</span><span class="p">,</span> <span class="n">vertex_2</span><span class="p">,</span> <span class="n">vertex_3</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">normals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">normals</span><span class="p">)):</span>
+                <span class="n">normals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">normals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">unit_vector</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">normals</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna um array contendo os vértices do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o primeiro vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o segundo vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o terceiro vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna um array contendo as normais de cada vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Point3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna a normal do primeiro vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Point3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna a normal do segundo vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Point3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna a normal do terceiro vértice do triângulo.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o vértice especificado.</span>
+
+<span class="sd">        0 = primeiro vértice, 1 = segundo vértice, 2 = terceiro vértice.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Triangle.hit"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.Triangle.Triangle.hit">[documentos]</a>    <span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray</span><span class="p">:</span> <span class="n">Ray</span><span class="p">,</span> <span class="n">t_interval</span><span class="p">:</span> <span class="n">Interval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;tuple[bool, HitRecord]&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Verifica se um raio atinge a triângulo.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ray: Ray - Raio a ser verificado.</span>
+
+<span class="sd">            - t_interval: Interval - Intervalo de t em que o raio pode atingir a triângulo.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu a triângulo e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja a triângulo, o registro de acerto é None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Descobrindo o vetor normal</span>
+        <span class="n">v1_to_v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="n">v1_to_v3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">v1_to_v2</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v1_to_v3</span><span class="p">)</span>
+
+        <span class="c1"># Descobrindo o valor P: intersecção do raio com o plano formado pelo triângulo</span>
+        <span class="n">normal_dot_ray_dir</span> <span class="o">=</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normal_dot_ray_dir</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># O raio é paralelo ao plano</span>
+        
+        <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">normal_dot_ray_dir</span>
+
+        <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t_interval</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># O triângulo está atrás do raio</span>
+        
+        <span class="n">intersect_point</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="c1"># Verificando se o ponto de intersecção está dentro ou fora do triângulo</span>
+        <span class="c1"># Todo lugar que retornar False, quer dizer que o ponto está à direita da aresta, logo, fora do triângulo</span>
+        <span class="c1"># Só estará dentro do triângulo se para todas as arestas, o ponto estiver para esquerda</span>
+        <span class="n">edge_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="n">vp1</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">edge_1</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        
+        <span class="n">edge_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span>
+        <span class="n">vp2</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">edge_2</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="n">edge_3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span>
+        <span class="n">vp3</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">edge_3</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">HitRecord</span><span class="p">(</span><span class="n">intersect_point</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__material</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Calculando as coordenadas baricêntricas</span>
+            <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w3</span> <span class="o">=</span> <span class="n">barycentric</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span><span class="p">,</span> <span class="n">intersect_point</span><span class="p">)</span>
+            <span class="n">normal</span> <span class="o">=</span> <span class="n">w1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal_1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal_2</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal_3</span>
+            <span class="n">normal</span> <span class="o">=</span> <span class="n">normal</span><span class="o">.</span><span class="n">unit_vector</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">HitRecord</span><span class="p">(</span><span class="n">intersect_point</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__material</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Triangle.scale"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.Triangle.Triangle.scale">[documentos]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Escala o triângulo.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - factor: float - Fator de escala.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">factor</span></div>
+    
+<div class="viewcode-block" id="Triangle.translate"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.Triangle.Triangle.translate">[documentos]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Vec3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Translada o triângulo.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - offset: Vec3 - Vetor de translação.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">offset</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

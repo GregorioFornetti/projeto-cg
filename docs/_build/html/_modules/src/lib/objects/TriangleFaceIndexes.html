@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib.objects.TriangleFaceIndexes &mdash; documentação CG </title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">projeto-cg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">src.lib.objects.TriangleFaceIndexes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte para src.lib.objects.TriangleFaceIndexes</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+
+<div class="viewcode-block" id="TriangleFaceIndexes"><a class="viewcode-back" href="../../../../src.lib.objects.html#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes">[documentos]</a><span class="k">class</span> <span class="nc">TriangleFaceIndexes</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertexes_indexes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">textures_indexes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">normals_indexes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe FaceIndex.</span>
+
+<span class="sd">        Responsável por armazenar os índices de um vértice, textura e normal de uma face.</span>
+
+<span class="sd">        O valor None é utilizado para indicar que o índice não foi especificado.</span>
+
+<span class="sd">        OBS: Todas as listas devem ter tamanho 3.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - vertexes_indexes: list[int] - Lista com os índices dos vértices da face.</span>
+
+<span class="sd">            - textures_indexes: list[Union[int, None]] - Lista com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">            - normals_indexes: list[Union[int, None]] - Lista com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vertexes_indexes</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;vertexes_indexes deve ter tamanho 3&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">textures_indexes</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;textures_indexes deve ter tamanho 3&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">normals_indexes</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;normals_indexes deve ter tamanho 3&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">vertexes_indexes</span><span class="p">),</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">textures_indexes</span><span class="p">),</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">normals_indexes</span><span class="p">)</span>
+        <span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice especificado. 0 = vertexes_indexes, 1 = textures_indexes, 2 = normals_indexes.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - key: int - Chave para especificar o índice a ser retornado. 0 = vertexes_indexes, 1 = textures_indexes, 2 = normals_indexes.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - TriangleFaceIndex</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertexes_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna uma tupla com os índices dos vértices da face.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[int] - Tupla com os índices dos vértices da face.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">textures_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna uma tupla com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[int, None] - Tupla com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normals_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna uma tupla com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[int, None] - Tupla com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice do primeiro vértice da face.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - int - Índice do primeiro vértice da face.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice do segundo vértice da face.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - int - Índice do segundo vértice da face.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vertex_3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice do terceiro vértice da face.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - int - Índice do terceiro vértice da face.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">texture_1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da primeira textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da primeira textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">texture_2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da segunda textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da segunda textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">texture_3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da terceira textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da terceira textura da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da primeira normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da primeira normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da segunda normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da segunda normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normal_3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o índice da terceira normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Union[int, None] - Índice da terceira normal da face. Pode ser None caso o índice não tenha sido especificado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__infos</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

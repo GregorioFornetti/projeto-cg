@@ -1,7 +1,7 @@
 
 from typing import Union
 import numpy as np
-from lib.vec.Vec2 import Vec3
+from lib.vec.Vec3 import Vec3
 from lib.mat.Mat import Mat
 
 class Mat3(Mat):

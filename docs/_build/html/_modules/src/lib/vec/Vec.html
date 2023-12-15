@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib.vec.Vec &mdash; documentação CG </title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">projeto-cg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">src.lib.vec.Vec</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte para src.lib.vec.Vec</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Classe base para os vetores: Vec2, Vec3 e Vec4</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Vec"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec">[documentos]</a><span class="k">class</span> <span class="nc">Vec</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. automethod:: __neg__</span>
+<span class="sd">    .. automethod:: __getitem__</span>
+<span class="sd">    .. automethod:: __add__</span>
+<span class="sd">    .. automethod:: __sub__</span>
+<span class="sd">    .. automethod:: __mul__</span>
+<span class="sd">    .. automethod:: __truediv__</span>
+<span class="sd">    .. automethod:: __iadd__</span>
+<span class="sd">    .. automethod:: __isub__</span>
+<span class="sd">    .. automethod:: __imul__</span>
+<span class="sd">    .. automethod:: __itruediv__</span>
+<span class="sd">    .. automethod:: __repr__</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">],</span> <span class="n">shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe de vetores. Recebe um array numpy (ou uma lista) que será utilizada para guardar os dados do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">            - vector: Union[np.ndarray, list] - Vetor numpy (ou lista) que será utilizada para guardar os dados do vetor.</span>
+
+<span class="sd">            - shape: tuple - Shape do vetor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">vector</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">=</span> <span class="n">vector</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vetor com tipo inválido, esperado: list ou np.ndarray, recebido: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vetor com shape inválido, esperado: </span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="s2">, recebido: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Vec.__neg__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__neg__">[documentos]</a>    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Inverte o sinal de todos os elementos do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Vetor com sinal invertido.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Vec.__getitem__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__getitem__">[documentos]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o valor (ou valores) dos indices escolhidos.</span>
+
+<span class="sd">        Para mais operações de índices, veja: https://numpy.org/doc/stable/user/basics.indexing.html</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            </span>
+<span class="sd">            - key: - Índice de acesso à matriz</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">            </span>
+<span class="sd">            - Union[np.ndarray, np.float64] - Valores contidos nos índices escolhidos.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+    
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Atribui valores aos indices escolhidos</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            </span>
+<span class="sd">            - key: - Índice de acesso à matriz</span>
+
+<span class="sd">            - value: - Valores a serem colocado</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    
+<div class="viewcode-block" id="Vec.__add__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__add__">[documentos]</a>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Soma elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou soma um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser somado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da soma.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Somando um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">+</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __radd__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Soma elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou soma um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser somado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da soma.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Vec.__sub__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__sub__">[documentos]</a>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Subtrai elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou subtrai um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para subtração.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da subtração.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Subtraindo um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">-</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rsub__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Subtrai elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou subtrai um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para subtração.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da subtração.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># A ordem importa, pois a subtração não é comutativa</span>
+        <span class="c1"># EX: 1 - vec != vec - 1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__sub__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Vec.__mul__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__mul__">[documentos]</a>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Multiplica elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou multiplica um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para multiplicação.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da multiplicação.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Multiplicando um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rmul__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Multiplica elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou multiplica um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para multiplicação.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da multiplicação.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Vec.__truediv__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__truediv__">[documentos]</a>    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Divide elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou divide um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para divisão.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da divisão.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Dividindo um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">/</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rtruediv__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Divide elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou divide um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para divisão.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da divisão.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># A ordem importa, pois a divisão não é comutativa</span>
+        <span class="c1"># EX: 1 / vec != vec / 1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__truediv__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Vec.__iadd__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__iadd__">[documentos]</a>    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Soma elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou soma um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser somado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da soma.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Somando um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">+=</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="Vec.__isub__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__isub__">[documentos]</a>    <span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Subtrai elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou subtrai um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para subtração.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da subtração.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Subtraindo um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">-=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">-=</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+    
+<div class="viewcode-block" id="Vec.__imul__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__imul__">[documentos]</a>    <span class="k">def</span> <span class="fm">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Multiplica elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou multiplica um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para multiplicação.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da multiplicação.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Multiplicando um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">*=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">*=</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+    
+<div class="viewcode-block" id="Vec.__itruediv__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__itruediv__">[documentos]</a>    <span class="k">def</span> <span class="fm">__itruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Divide elemento a elemento de dois vetores.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou divide um número a cada elemento do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Vec&#39;, np.float64] - Vetor ou número a ser usado para divisão.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Resultado da divisão.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Dividindo um vetor com outro vetor - cada elemento do vetor é somado com o elemento correspondente do outro vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">/=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">/=</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+    
+<div class="viewcode-block" id="Vec.__repr__"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.__repr__">[documentos]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Representação em string do vetor.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - str - String que representa o vetor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> &#39;</span>
+        <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+    
+<div class="viewcode-block" id="Vec.length"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.length">[documentos]</a>    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o comprimento do vetor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">squared_length</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Vec.squared_length"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.squared_length">[documentos]</a>    <span class="k">def</span> <span class="nf">squared_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o comprimento do vetor ao quadrado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Vec.dot"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.dot">[documentos]</a>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s1">&#39;Vec&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o produto escalar entre dois vetores.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Vec - Segundo vetor do produto escalar.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">            </span>
+<span class="sd">            - np.float64 - Resultado do produto escalar.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tipo inválido para produto escalar, esperado: Vec, recebido: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vec.unit_vector"><a class="viewcode-back" href="../../../../src.lib.vec.html#src.lib.vec.Vec.Vec.unit_vector">[documentos]</a>    <span class="k">def</span> <span class="nf">unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vec&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o vetor unitário.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Vec - Vetor unitário.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

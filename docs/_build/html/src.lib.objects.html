@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib.objects package &mdash; documentação CG </title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="src.lib.vec package" href="src.lib.vec.html" />
+    <link rel="prev" title="src.lib.materials package" href="src.lib.materials.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">projeto-cg</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="src.lib.html">src.lib package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">projeto-cg</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.lib.html">src.lib package</a></li>
+      <li class="breadcrumb-item active">src.lib.objects package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.lib.objects.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-lib-objects-package">
+<h1>src.lib.objects package<a class="headerlink" href="#src-lib-objects-package" title="Link permanente para este cabeçalho"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+<section id="module-src.lib.objects.Hittable">
+<span id="src-lib-objects-hittable-module"></span><h2>src.lib.objects.Hittable module<a class="headerlink" href="#module-src.lib.objects.Hittable" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.objects.Hittable.Hittable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.objects.Hittable.</span></span><span class="sig-name descname"><span class="pre">Hittable</span></span><a class="reference internal" href="_modules/src/lib/objects/Hittable.html#Hittable"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Hittable.Hittable" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe base para objetos que podem ser atingidos por raios.</p>
+<p>Basicamente, define que a classe filha precisa implementar o método hit</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Hittable.Hittable.hit">
+<span class="sig-name descname"><span class="pre">hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Interval.Interval" title="src.lib.Interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/objects/Hittable.html#Hittable.hit"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Hittable.Hittable.hit" title="Link permanente para esta definição"></a></dt>
+<dd><p>Dado um raio e um intervalo de t, será verificado se o raio atinge o objeto.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio que será verificado se atinge o objeto.</p></li>
+<li><p>t_interval: Interval - Intervalo de t que será verificado se o raio atinge o objeto. Se o raio atingir o objeto em um t que não está dentro do intervalo, então, o objeto não foi atingido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><p>Se o raio atingiu o objeto, então, será retornado uma tupla contendo True e um HitRecord com as informações da intersecção.
+Caso contrário, será retornado uma tupla contendo False e None.</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.objects.Model">
+<span id="src-lib-objects-model-module"></span><h2>src.lib.objects.Model module<a class="headerlink" href="#module-src.lib.objects.Model" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.objects.Model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.materials.html#src.lib.materials.Material.Material" title="src.lib.materials.Material.Material"><span class="pre">Material</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Model.html#Model"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Model.Model" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor da classe Model. Recebe o caminho do arquivo .obj e o lê, armazenando os vértices e faces do modelo.</p>
+<p>Atualmente, o modelo só suporta faces com 3 vértices (triângulos), gerando erro caso o arquivo .obj contenha faces com mais de 3 vértices.</p>
+<p>Ainda não há suporte para faces com texturas ou normais (elas são ignoradas, não gerando erro caso o arquivo .obj contenha essas informações).</p>
+<p>Definição de formato definida em: <a class="reference external" href="https://en.wikipedia.org/wiki/">https://en.wikipedia.org/wiki/</a><a href="#id1"><span class="problematic" id="id2">Wavefront_</span></a>.obj_file</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_path: str - Caminho do arquivo .obj a ser lido.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model.faces">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">faces</span></span><a class="headerlink" href="#src.lib.objects.Model.Model.faces" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna as faces do modelo.</p>
+<p>Atualmente, cada triângulo é representado apenas pelos seus vértices, sem informações de textura ou normais.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>list[Triangle] - Lista de faces do modelo.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model.faces_indexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">faces_indexes</span></span><a class="headerlink" href="#src.lib.objects.Model.Model.faces_indexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna os índices das faces do modelo.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>list[TriangleFaceIndexes] - Lista de índices das faces do modelo.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Model.html#Model.scale"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Model.Model.scale" title="Link permanente para esta definição"></a></dt>
+<dd><p>Escala o modelo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>scale_factor: float - Fator de escala.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translation_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Model.html#Model.translate"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Model.Model.translate" title="Link permanente para esta definição"></a></dt>
+<dd><p>Translada o modelo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>translation_vector: Vec3 - Vetor de translação.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Model.Model.vertexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertexes</span></span><a class="headerlink" href="#src.lib.objects.Model.Model.vertexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna os vértices do modelo.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>list[Vec3] - Lista de vértices do modelo.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.objects.Sphere">
+<span id="src-lib-objects-sphere-module"></span><h2>src.lib.objects.Sphere module<a class="headerlink" href="#module-src.lib.objects.Sphere" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.objects.Sphere.Sphere">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.objects.Sphere.</span></span><span class="sig-name descname"><span class="pre">Sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.materials.html#src.lib.materials.Material.Material" title="src.lib.materials.Material.Material"><span class="pre">Material</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Sphere.html#Sphere"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Sphere.Sphere" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Hittable</span></code></p>
+<p>Construtor de uma esfera.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>center: Point3 - Centro da esfera.</p></li>
+<li><p>radius: float - Raio da esfera.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Sphere.Sphere.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><a class="headerlink" href="#src.lib.objects.Sphere.Sphere.center" title="Link permanente para esta definição"></a></dt>
+<dd><p>Centro da esfera.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Sphere.Sphere.hit">
+<span class="sig-name descname"><span class="pre">hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Interval.Interval" title="src.lib.Interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/objects/Sphere.html#Sphere.hit"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Sphere.Sphere.hit" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se um raio atinge a esfera.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio a ser verificado.</p></li>
+<li><p>t_interval: Interval - Intervalo de t em que o raio pode atingir a esfera.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu a esfera e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja a esfera, o registro de acerto é None.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Sphere.Sphere.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#src.lib.objects.Sphere.Sphere.radius" title="Link permanente para esta definição"></a></dt>
+<dd><p>Raio da esfera.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.objects.Triangle">
+<span id="src-lib-objects-triangle-module"></span><h2>src.lib.objects.Triangle module<a class="headerlink" href="#module-src.lib.objects.Triangle" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.objects.Triangle.</span></span><span class="sig-name descname"><span class="pre">Triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.materials.html#src.lib.materials.Material.Material" title="src.lib.materials.Material.Material"><span class="pre">Material</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">normals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Point3</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Point3</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Point3</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Triangle.html#Triangle"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Triangle.Triangle" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Hittable</span></code></p>
+<p>Construtor de um triângulo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>vertex_1: Point3 - Primeiro vértice do triângulo.</p></li>
+<li><p>vertex_2: Point3 - Segundo vértice do triângulo.</p></li>
+<li><p>vertex_3: Point3 - Terceiro vértice do triângulo.</p></li>
+<li><p>material: Material - Material do triângulo.</p></li>
+<li><p>normals: tuple[Point3, Point3, Point3] - Tupla contendo as normais de cada vértice do triângulo. Caso não seja especificado, as normais serão calculadas automaticamente.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.hit">
+<span class="sig-name descname"><span class="pre">hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Interval.Interval" title="src.lib.Interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/objects/Triangle.html#Triangle.hit"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.hit" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se um raio atinge a triângulo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio a ser verificado.</p></li>
+<li><p>t_interval: Interval - Intervalo de t em que o raio pode atingir a triângulo.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu a triângulo e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja a triângulo, o registro de acerto é None.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.normal_1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.normal_1" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna a normal do primeiro vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.normal_2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.normal_2" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna a normal do segundo vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.normal_3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.normal_3" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna a normal do terceiro vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.normals">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.normals" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna um array contendo as normais de cada vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Triangle.html#Triangle.scale"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.scale" title="Link permanente para esta definição"></a></dt>
+<dd><p>Escala o triângulo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>factor: float - Fator de escala.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Triangle.html#Triangle.translate"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.translate" title="Link permanente para esta definição"></a></dt>
+<dd><p>Translada o triângulo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>offset: Vec3 - Vetor de translação.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.vertex_1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.vertex_1" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o primeiro vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.vertex_2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.vertex_2" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o segundo vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.vertex_3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.vertex_3" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o terceiro vértice do triângulo.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.Triangle.vertexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertexes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#src.lib.objects.Triangle.Triangle.vertexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna um array contendo os vértices do triângulo.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.objects.Triangle.barycentric">
+<span class="sig-prename descclassname"><span class="pre">src.lib.objects.Triangle.</span></span><span class="sig-name descname"><span class="pre">barycentric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">point3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">intersect_point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/Triangle.html#barycentric"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.Triangle.barycentric" title="Link permanente para esta definição"></a></dt>
+<dd><p>Calcula as coordenadas baricêntricas de um ponto em relação a um triângulo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>point1: Point3 - Primeiro vértice do triângulo.</p></li>
+<li><p>point2: Point3 - Segundo vértice do triângulo.</p></li>
+<li><p>point3: Point3 - Terceiro vértice do triângulo.</p></li>
+<li><p>intersect_point: Point3 - Ponto a ser calculado as coordenadas baricêntricas.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[float, float, float] - Tupla contendo as coordenadas baricêntricas do ponto.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-src.lib.objects.TriangleFaceIndexes">
+<span id="src-lib-objects-trianglefaceindexes-module"></span><h2>src.lib.objects.TriangleFaceIndexes module<a class="headerlink" href="#module-src.lib.objects.TriangleFaceIndexes" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.objects.TriangleFaceIndexes.</span></span><span class="sig-name descname"><span class="pre">TriangleFaceIndexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertexes_indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textures_indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normals_indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/objects/TriangleFaceIndexes.html#TriangleFaceIndexes"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor da classe FaceIndex.</p>
+<p>Responsável por armazenar os índices de um vértice, textura e normal de uma face.</p>
+<p>O valor None é utilizado para indicar que o índice não foi especificado.</p>
+<p>OBS: Todas as listas devem ter tamanho 3.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>vertexes_indexes: list[int] - Lista com os índices dos vértices da face.</p></li>
+<li><p>textures_indexes: list[Union[int, None]] - Lista com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</p></li>
+<li><p>normals_indexes: list[Union[int, None]] - Lista com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_1</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_1" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da primeira normal da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da primeira normal da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_2</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_2" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da segunda normal da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da segunda normal da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal_3</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normal_3" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da terceira normal da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da terceira normal da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normals_indexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normals_indexes</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.normals_indexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna uma tupla com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[int, None] - Tupla com os índices das normais da face. Pode conter None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture_1</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_1" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da primeira textura da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da primeira textura da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture_2</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_2" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da segunda textura da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da segunda textura da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture_3</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.texture_3" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice da terceira textura da face. Pode ser None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Union[int, None] - Índice da terceira textura da face. Pode ser None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.textures_indexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">textures_indexes</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.textures_indexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna uma tupla com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[int, None] - Tupla com os índices das texturas da face. Pode conter None caso o índice não tenha sido especificado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_1</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_1" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice do primeiro vértice da face.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>int - Índice do primeiro vértice da face.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_2</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_2" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice do segundo vértice da face.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>int - Índice do segundo vértice da face.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertex_3</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertex_3" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o índice do terceiro vértice da face.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>int - Índice do terceiro vértice da face.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertexes_indexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vertexes_indexes</span></span><a class="headerlink" href="#src.lib.objects.TriangleFaceIndexes.TriangleFaceIndexes.vertexes_indexes" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna uma tupla com os índices dos vértices da face.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[int] - Tupla com os índices dos vértices da face.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.objects">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.lib.objects" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="src.lib.materials.html" class="btn btn-neutral float-left" title="src.lib.materials package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="src.lib.vec.html" class="btn btn-neutral float-right" title="src.lib.vec package" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

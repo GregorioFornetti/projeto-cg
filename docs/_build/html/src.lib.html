@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib package &mdash; documentação CG </title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="src.lib.mat package" href="src.lib.mat.html" />
+    <link rel="prev" title="src package" href="src.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">projeto-cg</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.lib package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">projeto-cg</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+      <li class="breadcrumb-item active">src.lib package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.lib.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-lib-package">
+<h1>src.lib package<a class="headerlink" href="#src-lib-package" title="Link permanente para este cabeçalho"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link permanente para este cabeçalho"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.lib.mat.html">src.lib.mat package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#module-src.lib.mat.Mat">src.lib.mat.Mat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#module-src.lib.mat.Mat2">src.lib.mat.Mat2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#module-src.lib.mat.Mat3">src.lib.mat.Mat3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#module-src.lib.mat.Mat4">src.lib.mat.Mat4 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.mat.html#module-src.lib.mat">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.lib.materials.html">src.lib.materials package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#module-src.lib.materials.Dielectric">src.lib.materials.Dielectric module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#module-src.lib.materials.Lambertian">src.lib.materials.Lambertian module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#module-src.lib.materials.Material">src.lib.materials.Material module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#module-src.lib.materials.Metal">src.lib.materials.Metal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.materials.html#module-src.lib.materials">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.lib.objects.html">src.lib.objects package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects.Hittable">src.lib.objects.Hittable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects.Model">src.lib.objects.Model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects.Sphere">src.lib.objects.Sphere module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects.Triangle">src.lib.objects.Triangle module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects.TriangleFaceIndexes">src.lib.objects.TriangleFaceIndexes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.objects.html#module-src.lib.objects">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.lib.vec.html">src.lib.vec package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#module-src.lib.vec.Vec">src.lib.vec.Vec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#module-src.lib.vec.Vec2">src.lib.vec.Vec2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#module-src.lib.vec.Vec3">src.lib.vec.Vec3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#module-src.lib.vec.Vec4">src.lib.vec.Vec4 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.lib.vec.html#module-src.lib.vec">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+<section id="module-src.lib.Camera">
+<span id="src-lib-camera-module"></span><h2>src.lib.Camera module<a class="headerlink" href="#module-src.lib.Camera" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">Camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_width:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_per_pixel:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vfov:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">40.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookfrom:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">0.0</span> <span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookat:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">0.0</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vup:</span> <span class="pre">~lib.vec.Vec3.Vec3</span> <span class="pre">=</span> <span class="pre">0.0</span> <span class="pre">1.0</span> <span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera.get_ray">
+<span class="sig-name descname"><span class="pre">get_ray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.get_ray"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.get_ray" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.initialize"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.initialize" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera.pixel_sample_square">
+<span class="sig-name descname"><span class="pre">pixel_sample_square</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.pixel_sample_square"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.pixel_sample_square" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera.ray_color">
+<span class="sig-name descname"><span class="pre">ray_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.HittableList.HittableList" title="src.lib.HittableList.HittableList"><span class="pre">HittableList</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.ray_color"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.ray_color" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Camera.Camera.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.HittableList.HittableList" title="src.lib.HittableList.HittableList"><span class="pre">HittableList</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.lib.Image.Image" title="src.lib.Image.Image"><span class="pre">Image</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#Camera.render"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.Camera.render" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.Camera.linear_to_gamma">
+<span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">linear_to_gamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear_component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#linear_to_gamma"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.linear_to_gamma" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.Camera.transform_color">
+<span class="sig-prename descclassname"><span class="pre">src.lib.Camera.</span></span><span class="sig-name descname"><span class="pre">transform_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel_color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_per_pixel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/src/lib/Camera.html#transform_color"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Camera.transform_color" title="Link permanente para esta definição"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-src.lib.HitRecord">
+<span id="src-lib-hitrecord-module"></span><h2>src.lib.HitRecord module<a class="headerlink" href="#module-src.lib.HitRecord" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.HitRecord.</span></span><span class="sig-name descname"><span class="pre">HitRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.materials.html#src.lib.materials.Material.Material" title="src.lib.materials.Material.Material"><span class="pre">Material</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/HitRecord.html#HitRecord"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HitRecord.HitRecord" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor de um registro de acerto (hit).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p: Point3 - Ponto de acerto.</p></li>
+<li><p>normal: Vec3 - Vetor normal do ponto de acerto.</p></li>
+<li><p>t: float - Tempo t do raio no ponto de acerto.</p></li>
+<li><p>ray: Ray - Raio que utilizado</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.front_face">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">front_face</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.front_face" title="Link permanente para esta definição"></a></dt>
+<dd><p>Booleano que indica se o raio acertou o objeto pela frente ou por trás.</p>
+<p>Se for verdadeiro (True), o raio acertou o objeto pela frente. Se for falso (False), o raio acertou o objeto por trás.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.normal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normal</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.normal" title="Link permanente para esta definição"></a></dt>
+<dd><p>Vetor normal do ponto de acerto.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.p">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.p" title="Link permanente para esta definição"></a></dt>
+<dd><p>Ponto em que o raio acertou algum objeto.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.set_normal">
+<span class="sig-name descname"><span class="pre">set_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outward_normal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/HitRecord.html#HitRecord.set_normal"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HitRecord.HitRecord.set_normal" title="Link permanente para esta definição"></a></dt>
+<dd><p>Define o vetor normal do ponto de acerto. Isso depende da direção do raio e da normal do objeto.</p>
+<p>Se a normal do objeto aponta para a mesma direção do raio, então o raio está do outro lado da face (lado interno). Logo, a normal deve ser invertida.</p>
+<p>Isso é chamado no construtor automaticamente, para definir a normal e o booleano de front face.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.HitRecord.HitRecord.t">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t</span></span><a class="headerlink" href="#src.lib.HitRecord.HitRecord.t" title="Link permanente para esta definição"></a></dt>
+<dd><p>Tempo t do raio no ponto de acerto.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.HittableList">
+<span id="src-lib-hittablelist-module"></span><h2>src.lib.HittableList module<a class="headerlink" href="#module-src.lib.HittableList" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.HittableList.HittableList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.HittableList.</span></span><span class="sig-name descname"><span class="pre">HittableList</span></span><a class="reference internal" href="_modules/src/lib/HittableList.html#HittableList"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HittableList.HittableList" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor de uma lista de objetos que podem ser atingidos por um raio.
+Um objeto desta classe representa o mundo ou uma cena.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.HittableList.HittableList.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.objects.html#src.lib.objects.Hittable.Hittable" title="src.lib.objects.Hittable.Hittable"><span class="pre">Hittable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/HittableList.html#HittableList.add"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HittableList.HittableList.add" title="Link permanente para esta definição"></a></dt>
+<dd><p>Adiciona um objeto à lista de objetos que podem ser atingidos por um raio.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>obj: Hittable - Objeto a ser adicionado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.HittableList.HittableList.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/HittableList.html#HittableList.clear"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HittableList.HittableList.clear" title="Link permanente para esta definição"></a></dt>
+<dd><p>Limpa (esvazia) a lista de objetos que podem ser atingidos por um raio.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.HittableList.HittableList.hit">
+<span class="sig-name descname"><span class="pre">hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.lib.Interval.Interval" title="src.lib.Interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/HittableList.html#HittableList.hit"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.HittableList.HittableList.hit" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se um raio atinge algum objeto da lista de objetos que podem ser atingidos por um raio.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio a ser verificado.</p></li>
+<li><p>interval: Interval - Intervalo de t em que o raio pode atingir algum objeto.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu algum objeto e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja nenhum objeto, o registro de acerto é None.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.Image">
+<span id="src-lib-image-module"></span><h2>src.lib.Image module<a class="headerlink" href="#module-src.lib.Image" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.Image.Image">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.Image.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Image.html#Image"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Image.Image" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor da classe Image. Cria uma matriz de pixels com as dimensões passadas como parâmetro.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>width: int - Largura da imagem em pixels.</p></li>
+<li><p>height: int - Altura da imagem em pixels.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Image.Image.all_pixels_set">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_pixels_set</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#src.lib.Image.Image.all_pixels_set" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se todos os pixels da imagem foram definidos.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bool - True se todos os pixels foram definidos. False caso contrário.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Image.Image.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.lib.Image.Image.height" title="Link permanente para esta definição"></a></dt>
+<dd><p>Altura da imagem.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>int - Altura da imagem em pixels.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Image.Image.to_uint8_matrix">
+<span class="sig-name descname"><span class="pre">to_uint8_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/src/lib/Image.html#Image.to_uint8_matrix"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Image.Image.to_uint8_matrix" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna uma matriz numpy representando a imagem.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>np.ndarray - Matriz numpy representando a imagem. A matriz possui valores entre 0 e 255 e é do tipo uint8.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Image.Image.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.lib.Image.Image.width" title="Link permanente para esta definição"></a></dt>
+<dd><p>Largura da imagem.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>int - Largura da imagem em pixels.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.ImageIO">
+<span id="src-lib-imageio-module"></span><h2>src.lib.ImageIO module<a class="headerlink" href="#module-src.lib.ImageIO" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.ImageIO.</span></span><span class="sig-name descname"><span class="pre">ImageReader</span></span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageReader"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageReader" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageReader.read_as_float_matrix">
+<span class="sig-name descname"><span class="pre">read_as_float_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageReader.read_as_float_matrix"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageReader.read_as_float_matrix" title="Link permanente para esta definição"></a></dt>
+<dd><p>Lê o arquivo de imagem e retorna uma matriz numpy representando a imagem.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>path: str - Caminho do arquivo a ser lido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>np.ndarray - Matriz numpy representando a imagem. A matriz possui valores entre 0 e 1 e é do tipo float.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageReader.read_as_pil_image">
+<span class="sig-name descname"><span class="pre">read_as_pil_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Image</span></span></span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageReader.read_as_pil_image"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageReader.read_as_pil_image" title="Link permanente para esta definição"></a></dt>
+<dd><p>Lê o arquivo de imagem e retorna um objeto PIL.Image representando a imagem.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>path: str - Caminho do arquivo a ser lido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Image - Objeto PIL.Image representando a imagem.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageReader.read_as_uint8_matrix">
+<span class="sig-name descname"><span class="pre">read_as_uint8_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageReader.read_as_uint8_matrix"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageReader.read_as_uint8_matrix" title="Link permanente para esta definição"></a></dt>
+<dd><p>Lê o arquivo de imagem e retorna uma matriz numpy representando a imagem.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>path: str - Caminho do arquivo a ser lido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>np.ndarray - Matriz numpy representando a imagem. A matriz possui valores entre 0 e 255 e é do tipo uint8.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.ImageIO.</span></span><span class="sig-name descname"><span class="pre">ImageWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#src.lib.Image.Image" title="src.lib.Image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageWriter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageWriter" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor da classe ImageWriter. Recebe um objeto ou uma matriz representando uma imagem, para ser posteriormente salva ou visualizada.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>image: Union[np.ndarray, Image, Image.Image] - Imagem a ser salva ou visualizada. Pode ser um objeto PIL.Image ou uma matriz numpy. A matriz numpy pode possuir valores entre 0 e 1 e ser do tipo float ou ser uma matriz do tipo uint8. Pode ser também um objeto Image, que é uma classe definida no arquivo Image.py.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageWriter.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageWriter.display"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageWriter.display" title="Link permanente para esta definição"></a></dt>
+<dd><p>Mostra a imagem na tela.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageWriter.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageWriter.save"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageWriter.save" title="Link permanente para esta definição"></a></dt>
+<dd><p>Salva a imagem em um arquivo.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>path: str - Caminho do arquivo a ser salvo.</p></li>
+<li><p>format: Union[str, None] - Formato do arquivo a ser salvo. Se não for especificado, o formato será inferido a partir da extensão do arquivo.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.ImageIO.ImageWriter.save_as_ppm">
+<span class="sig-name descname"><span class="pre">save_as_ppm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/ImageIO.html#ImageWriter.save_as_ppm"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.ImageIO.ImageWriter.save_as_ppm" title="Link permanente para esta definição"></a></dt>
+<dd><p>Salva a imagem em um arquivo PPM. Utiliza o algoritmo aprendido no tutorial para salvar o arquivo</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>path: str - Caminho do arquivo a ser salvo.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.Interval">
+<span id="src-lib-interval-module"></span><h2>src.lib.Interval module<a class="headerlink" href="#module-src.lib.Interval" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.Interval.</span></span><span class="sig-name descname"><span class="pre">Interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Interval.html#Interval"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Interval.Interval" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Interval.html#Interval.__contains__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Interval.Interval.__contains__" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se o valor está dentro do intervalo.</p>
+<p>Exemplo:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="ow">in</span> <span class="n">interval</span>  <span class="c1"># 0 &lt;= 5 &lt;= 10</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">15</span> <span class="ow">in</span> <span class="n">interval</span> <span class="c1"># 15 &gt; 19</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">interval</span> <span class="c1"># -1 &lt; 0</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="ow">in</span> <span class="n">interval</span>  <span class="c1"># 0 &lt;= 0 &lt;= 10</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>value: float - Valor a ser verificado.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bool - True se o valor está dentro do intervalo, False caso contrário.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p>Construtor de um intervalo. Delimita um intervalo de valores possíveis.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>min: float - Valor mínimo do intervalo. Para estar dentro do intervalo, o valor deve ser maior ou igual a esse valor.</p></li>
+<li><p>max: float - Valor máximo do intervalo. Para estar dentro do intervalo, o valor deve ser menor ou igual a esse valor.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval.clamp">
+<span class="sig-name descname"><span class="pre">clamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Interval.html#Interval.clamp"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Interval.Interval.clamp" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o valor se ele estiver dentro do intervalo, ou o valor mínimo ou máximo caso contrário.</p>
+<p>Exemplo:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>value: float - Valor a ser verificado.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - O valor se ele estiver dentro do intervalo, ou o valor mínimo ou máximo caso contrário.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval.max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max</span></span><a class="headerlink" href="#src.lib.Interval.Interval.max" title="Link permanente para esta definição"></a></dt>
+<dd><p>Valor máximo do intervalo. Para estar dentro do intervalo, o valor deve ser menor ou igual a esse valor.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval.min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min</span></span><a class="headerlink" href="#src.lib.Interval.Interval.min" title="Link permanente para esta definição"></a></dt>
+<dd><p>Valor mínimo do intervalo. Para estar dentro do intervalo, o valor deve ser maior ou igual a esse valor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Interval.Interval.surrounds">
+<span class="sig-name descname"><span class="pre">surrounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Interval.html#Interval.surrounds"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Interval.Interval.surrounds" title="Link permanente para esta definição"></a></dt>
+<dd><p>Verifica se o valor está dentro do intervalo.</p>
+<p>Exemplo:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">surrounds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 0 &lt;= 5 &lt;= 10</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">surrounds</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">surrounds</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">surrounds</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>value: float - Valor a ser verificado.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bool - True se o valor está dentro do intervalo, False caso contrário.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.Ray">
+<span id="src-lib-ray-module"></span><h2>src.lib.Ray module<a class="headerlink" href="#module-src.lib.Ray" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.lib.Ray.Ray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.Ray.</span></span><span class="sig-name descname"><span class="pre">Ray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/Ray.html#Ray"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Ray.Ray" title="Link permanente para esta definição"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Construtor de um raio (Ray).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>origin: Point3 - Ponto de origem do raio.</p></li>
+<li><p>direction: Vec3 - Vetor que indica a direção do raio.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.lib.Ray.Ray.at">
+<span class="sig-name descname"><span class="pre">at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></span></span><a class="reference internal" href="_modules/src/lib/Ray.html#Ray.at"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.Ray.Ray.at" title="Link permanente para esta definição"></a></dt>
+<dd><p>Retorna o ponto em que o raio para no tempo t.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Ray.Ray.direction">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></em><a class="headerlink" href="#src.lib.Ray.Ray.direction" title="Link permanente para esta definição"></a></dt>
+<dd><p>Vetor que indica a direção do raio.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.lib.Ray.Ray.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Vec3" title="src.lib.vec.Vec3.Vec3"><span class="pre">Vec3</span></a></em><a class="headerlink" href="#src.lib.Ray.Ray.origin" title="Link permanente para esta definição"></a></dt>
+<dd><p>Ponto de origem do raio.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.lib.constants">
+<span id="src-lib-constants-module"></span><h2>src.lib.constants module<a class="headerlink" href="#module-src.lib.constants" title="Link permanente para este cabeçalho"></a></h2>
+<p>Arquivo com constantes genéricas que podem ser necessárias em qualquer parte do código.</p>
+</section>
+<section id="module-src.lib.utils">
+<span id="src-lib-utils-module"></span><h2>src.lib.utils module<a class="headerlink" href="#module-src.lib.utils" title="Link permanente para este cabeçalho"></a></h2>
+<p>Funções utilitárias que podem ser necessárias em qualquer parte do código.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.utils.degrees_to_radians">
+<span class="sig-prename descclassname"><span class="pre">src.lib.utils.</span></span><span class="sig-name descname"><span class="pre">degrees_to_radians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/utils.html#degrees_to_radians"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.utils.degrees_to_radians" title="Link permanente para esta definição"></a></dt>
+<dd><p>Converte um ângulo de graus para radianos.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>degrees: float - Ângulo em graus.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - Ângulo em radianos.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.utils.random_double">
+<span class="sig-prename descclassname"><span class="pre">src.lib.utils.</span></span><span class="sig-name descname"><span class="pre">random_double</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/utils.html#random_double"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.utils.random_double" title="Link permanente para esta definição"></a></dt>
+<dd><p>Gera um número aleatório entre 0 e 1.</p>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - Número aleatório entre 0 e 1.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.lib.utils.random_double_range">
+<span class="sig-prename descclassname"><span class="pre">src.lib.utils.</span></span><span class="sig-name descname"><span class="pre">random_double_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/utils.html#random_double_range"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.utils.random_double_range" title="Link permanente para esta definição"></a></dt>
+<dd><p>Gera um número aleatório entre min e max.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>min: float - Valor mínimo.</p></li>
+<li><p>max: float - Valor máximo.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - Número aleatório entre min e max.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-src.lib">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.lib" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="src.html" class="btn btn-neutral float-left" title="src package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="src.lib.mat.html" class="btn btn-neutral float-right" title="src.lib.mat package" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

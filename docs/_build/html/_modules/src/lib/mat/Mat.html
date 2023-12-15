@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.lib.mat.Mat &mdash; documentação CG </title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">projeto-cg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">src.lib.mat.Mat</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte para src.lib.mat.Mat</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Classe base para as Matrizes (Mat2, Mat3 e Mat4)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">lib.vec.Vec</span> <span class="kn">import</span> <span class="n">Vec</span>
+
+
+<div class="viewcode-block" id="Mat"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat">[documentos]</a><span class="k">class</span> <span class="nc">Mat</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. automethod:: __neg__</span>
+<span class="sd">    .. automethod:: __getitem__</span>
+<span class="sd">    .. automethod:: __add__</span>
+<span class="sd">    .. automethod:: __sub__</span>
+<span class="sd">    .. automethod:: __mul__</span>
+<span class="sd">    .. automethod:: __truediv__</span>
+<span class="sd">    .. automethod:: __iadd__</span>
+<span class="sd">    .. automethod:: __isub__</span>
+<span class="sd">    .. automethod:: __imul__</span>
+<span class="sd">    .. automethod:: __itruediv__</span>
+<span class="sd">    .. automethod:: __repr__</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">],</span> <span class="n">shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe de matrizes. Recebe uma matriz numpy (ou uma lista) que será utilizada para guardar os dados da matriz.</span>
+
+<span class="sd">        --- </span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - matrix: Union[np.ndarray, list] - Matriz numpy (ou lista) que será utilizada para guardar os dados da matriz.</span>
+
+<span class="sd">            - shape: tuple - Shape da matriz.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matrix</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matriz com tipo inválido, esperado: list ou np.ndarray, recebido: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matriz com shape inválido, esperado: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, recebido: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Mat.__neg__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__neg__">[documentos]</a>    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Inverte o sinal de todos elementos da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Versão negativa da matriz.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Mat.__getitem__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__getitem__">[documentos]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o valor (ou valores) dos indices escolhidos.</span>
+
+<span class="sd">        Para mais operações de índices, veja: https://numpy.org/doc/stable/user/basics.indexing.html</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            </span>
+<span class="sd">            - key: - Índice de acesso à matriz</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">            </span>
+<span class="sd">            - Union[np.ndarray, np.float64] - Valores contidos nos índices escolhidos.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Atribui valores aos indices escolhidos</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            </span>
+<span class="sd">            - key: - Índice de acesso à matriz</span>
+
+<span class="sd">            - value: - Valores a serem colocado</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    
+
+<div class="viewcode-block" id="Mat.__add__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__add__">[documentos]</a>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Soma elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou soma um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou soma um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser somado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da soma.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Somando duas matrizes - elemento a elemento</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um vetor - cada linha da matriz é somada com o vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __radd__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Mat.__sub__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__sub__">[documentos]</a>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Subtrai elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou subtrai um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou subtrai um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser subtraido.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da subtração.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Subtraindo duas matrizes - elemento a elemento</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um vetor - cada linha da matriz é subtraida com o vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um número - cada elemento da matriz é subtraido com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rsub__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+        <span class="c1"># A ordem importa, pois a subtração não é comutativa</span>
+        <span class="c1"># EX: 1 - mat != mat - 1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">vec</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__sub__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Mat.__mul__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__mul__">[documentos]</a>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Multiplica elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou multiplica um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou multiplica um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser multiplicado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da multiplicação.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Multiplicando duas matrizes - elemento a elemento</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um vetor - cada linha da matriz é multiplicada com o vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um número - cada elemento da matriz é multiplicado com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rmul__ do outro objeto, que pode estar implementado</span></div>
+    
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Mat.__truediv__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__truediv__">[documentos]</a>    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Divide elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou Divide um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou Divide um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser multiplicado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da divisão.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Dividindo duas matrizes - elemento a elemento</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um vetor - cada linha da matriz é dividida com o vetor</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um número - cada elemento da matriz é dividido com o número</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># força a chamada do método __rtruediv__ do outro objeto, que pode estar implementado</span></div>
+
+    <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+        <span class="c1"># A ordem importa, pois a divisão não é comutativa</span>
+        <span class="c1"># EX: 1 / mat != mat / 1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">vec</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__truediv__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Mat.__iadd__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__iadd__">[documentos]</a>    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Soma elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou soma um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou soma um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser somado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da soma.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Somando duas matrizes - elemento a elemento</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um vetor - cada linha da matriz é somada com o vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Somando uma matriz e um número - cada elemento da matriz é somado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">+=</span> <span class="n">other</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+    
+<div class="viewcode-block" id="Mat.__isub__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__isub__">[documentos]</a>    <span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Subtrai elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou subtrai um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou subtrai um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser subtraido.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da subtração.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Subtraindo duas matrizes - elemento a elemento</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-=</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um vetor - cada linha da matriz é subtraida com o vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Subtraindo uma matriz e um número - cada elemento da matriz é subtraido com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">-=</span> <span class="n">other</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+    
+<div class="viewcode-block" id="Mat.__imul__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__imul__">[documentos]</a>    <span class="k">def</span> <span class="fm">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Multiplica elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou multiplica um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou multiplica um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser multiplicado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da multiplicação.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Multiplicando duas matrizes - elemento a elemento</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*=</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um vetor - cada linha da matriz é multiplicada com o vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Multiplicando uma matriz e um número - cada elemento da matriz é multiplicado com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">*=</span> <span class="n">other</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+<div class="viewcode-block" id="Mat.__itruediv__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__itruediv__">[documentos]</a>    <span class="k">def</span> <span class="fm">__itruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Mat&#39;</span><span class="p">,</span> <span class="n">Vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Divide elemento a elemento de duas matrizes.</span>
+<span class="sd">        </span>
+<span class="sd">        Ou Divide um número a cada elemento da matriz.</span>
+
+<span class="sd">        Ou Divide um vetor a cada linha da matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Union[&#39;Mat&#39;, Vec, np.float64] - Matriz, vetor ou número a ser multiplicado.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - Mat - Resultado da divisão.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="c1"># Dividindo duas matrizes - elemento a elemento</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/=</span> <span class="n">other</span><span class="o">.</span><span class="n">matrix</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um vetor - cada linha da matriz é dividida com o vetor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/=</span> <span class="n">other</span><span class="o">.</span><span class="n">vec</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="c1"># Dividindo uma matriz e um número - cada elemento da matriz é dividido com o número</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">/=</span> <span class="n">other</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+    
+<div class="viewcode-block" id="Mat.__repr__"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.__repr__">[documentos]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna uma string representando a matriz.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">            </span>
+<span class="sd">                - str - String representando a matriz.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">string</span></div>
+    
+<div class="viewcode-block" id="Mat.dot"><a class="viewcode-back" href="../../../../src.lib.mat.html#src.lib.mat.Mat.Mat.dot">[documentos]</a>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s1">&#39;Mat&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Mat&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Retorna o resultado da multiplicação de matrizes.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - other: Mat - Segundo vetor do produto escalar.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">            </span>
+<span class="sd">            - Mat - Resultado do produto escalar.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mat</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tipo inválido para multiplicação de matrizes, esperado: Mat, recebido: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
