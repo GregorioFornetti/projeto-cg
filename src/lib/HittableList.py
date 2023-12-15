@@ -1,8 +1,11 @@
 
+from typing import Union
+
 from lib.objects.Hittable import Hittable
 from lib.Ray import Ray
 from lib.HitRecord import HitRecord
 from lib.Interval import Interval
+from lib.objects.Model import Model
 
 
 class HittableList:
@@ -14,7 +17,7 @@ class HittableList:
         '''
         self.objects: list[Hittable] = []
     
-    def add(self, obj: Hittable):
+    def add(self, obj: Union[Hittable, Model]):
         '''
         Adiciona um objeto à lista de objetos que podem ser atingidos por um raio.
 
@@ -24,7 +27,11 @@ class HittableList:
 
             - obj: Hittable - Objeto a ser adicionado.
         '''
-        self.objects.append(obj)
+        if isinstance(obj, Model):
+            for face in obj.faces:
+                self.objects.append(face)
+        else:
+            self.objects.append(obj)
     
     def clear(self):
         '''

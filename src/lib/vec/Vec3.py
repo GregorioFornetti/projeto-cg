@@ -2,7 +2,8 @@
 from typing import Union
 import numpy as np
 from lib.vec.Vec import Vec
-from lib.utils import random_double_range
+from lib.utils import random_double_range, degrees_to_radians
+import math
 
 
 class Vec3(Vec):
@@ -496,6 +497,44 @@ class Vec3(Vec):
             - Vec3 - Vetor unitário.
         '''
         return super().unit_vector()
+    
+    def rotate(self, axis: str, angle: np.float64) -> 'Vec3':
+        '''
+        Retorna o vetor rotacionado.
+
+        ---
+
+        Parâmetros:
+
+            - axis: 'Vec3' - String sendo 'x', 'y' ou 'z'.
+            
+            - angle: np.float64 - Ângulo de rotação em graus.
+        
+        ---
+
+        Retorno:
+
+            - Vec3 - Vetor rotacionado.
+        '''
+        angle = degrees_to_radians(angle)
+        if axis == 'x':
+            return Vec3([
+                self.x,
+                self.y * math.cos(angle) - self.z * math.sin(angle),
+                self.y * math.sin(angle) + self.z * math.cos(angle)
+            ])
+        elif axis == 'y':
+            return Vec3([
+                self.x * math.cos(angle) + self.z * math.sin(angle),
+                self.y,
+                -self.x * math.sin(angle) + self.z * math.cos(angle)
+            ])
+        elif axis == 'z':
+            return Vec3([
+                self.x * math.cos(angle) - self.y * math.sin(angle),
+                self.x * math.sin(angle) + self.y * math.cos(angle),
+                self.z
+            ])
 
     @staticmethod
     def random_range(min: float, max: float) -> 'Vec3':

@@ -241,3 +241,4 @@ class Triangle(Hittable):
         '''
         for i in range(len(self.__vertexes)):
             self.__vertexes[i] += offset
+    

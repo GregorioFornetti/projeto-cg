@@ -79,3 +79,23 @@ class Sphere(Hittable):
             p = ray.at(t)
             normal = (p - self.center) / self.radius
             return True, HitRecord(p, normal, t, ray, self.__material)
+    
+    def rotate(self, axis: str, angle: float) -> 'Sphere':
+        '''
+        Rotaciona a esfera em torno de um eixo.
+
+        ---
+
+        Parâmetros:
+
+            - axis: str - Eixo de rotação. Pode ser 'x', 'y' ou 'z'.
+
+            - angle: float - Ângulo de rotação em radianos.
+        
+        ---
+
+        Retorno:
+
+            - Sphere - Esfera rotacionada.
+        '''
+        return Sphere(self.center.rotate(axis, angle), self.radius, self.__material)
