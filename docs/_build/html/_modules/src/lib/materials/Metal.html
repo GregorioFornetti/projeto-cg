@@ -79,10 +79,38 @@
 <div class="viewcode-block" id="Metal"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Metal.Metal">[documentos]</a><span class="k">class</span> <span class="nc">Metal</span><span class="p">(</span><span class="n">Material</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">albedo</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">fuzz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe Metal (metálico/reflexivo).</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - albedo: Color - Cor do objeto.</span>
+
+<span class="sd">            - fuzz: float - Grau de reflexividade do objeto. Quanto maior, mais difuso (aleatório).</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span> <span class="o">=</span> <span class="n">albedo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fuzz</span> <span class="o">=</span> <span class="n">fuzz</span> <span class="k">if</span> <span class="n">fuzz</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
     
 <div class="viewcode-block" id="Metal.scatter"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Metal.Metal.scatter">[documentos]</a>    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray</span><span class="p">:</span> <span class="n">Ray</span><span class="p">,</span> <span class="n">rec</span><span class="p">:</span> <span class="n">HitRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;tuple[bool, Ray, Color]&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é a reflexão do raio sobre a superfície do objeto. Se fuzz &gt; 0, o refletido não será perfeito, terá um fator aleatório somado à ele (quão maior o fuzz, mais aleatório).</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ray: Ray - Raio que atingiu o objeto.</span>
+
+<span class="sd">            - rec: HitRecord - Informações do objeto atingido.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">reflected</span> <span class="o">=</span> <span class="n">Vec3</span><span class="o">.</span><span class="n">reflect</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">unit_vector</span><span class="p">(),</span> <span class="n">rec</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>
         <span class="n">scattered</span> <span class="o">=</span> <span class="n">Ray</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">reflected</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz</span> <span class="o">*</span> <span class="n">Vec3</span><span class="o">.</span><span class="n">random_in_unit_sphere</span><span class="p">())</span>
         <span class="n">attenuation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span>

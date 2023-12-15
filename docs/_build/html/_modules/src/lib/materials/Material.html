@@ -76,6 +76,23 @@
 
 <div class="viewcode-block" id="Material"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Material.Material">[documentos]</a><span class="k">class</span> <span class="nc">Material</span><span class="p">:</span>
 <div class="viewcode-block" id="Material.scatter"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Material.Material.scatter">[documentos]</a>    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray</span><span class="p">:</span> <span class="n">Ray</span><span class="p">,</span> <span class="n">rec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;tuple[bool, Ray, Color]&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gera um raio novo (possivelmente) a partir do raio que atingiu o objeto.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ray: Ray - Raio que atingiu o objeto.</span>
+
+<span class="sd">            - rec: HitRecord - Informações do objeto atingido.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>
 

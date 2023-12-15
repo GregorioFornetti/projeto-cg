@@ -98,15 +98,55 @@
 <dt class="sig sig-object py" id="src.lib.materials.Dielectric.Dielectric">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.materials.Dielectric.</span></span><span class="sig-name descname"><span class="pre">Dielectric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/materials/Dielectric.html#Dielectric"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Dielectric.Dielectric" title="Link permanente para esta definição"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Material</span></code></p>
+<p>Construtor da classe Dielectric (vidro).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ir: float - Índice de refração do vidro.</p></li>
+</ul>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.materials.Dielectric.Dielectric.reflectance">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reflectance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cosine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/src/lib/materials/Dielectric.html#Dielectric.reflectance"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Dielectric.Dielectric.reflectance" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Calcula a refletividade de um material.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>cosine: float - Cosseno do ângulo de incidência.</p></li>
+<li><p>ref_idx: float - Índice de refração do material.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>float - Refletividade do material.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.materials.Dielectric.Dielectric.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/materials/Dielectric.html#Dielectric.scatter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Dielectric.Dielectric.scatter" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é a refração do raio sobre a superfície do objeto. Se não houver refração, o raio é refletido.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio que atingiu o objeto.</p></li>
+<li><p>rec: HitRecord - Informações do objeto atingido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 </dd></dl>
 
@@ -117,10 +157,34 @@
 <dt class="sig sig-object py" id="src.lib.materials.Lambertian.Lambertian">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.materials.Lambertian.</span></span><span class="sig-name descname"><span class="pre">Lambertian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">albedo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/materials/Lambertian.html#Lambertian"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Lambertian.Lambertian" title="Link permanente para esta definição"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Material</span></code></p>
+<p>Construtor da classe Lambertian (difuso).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>albedo: Color - Cor do objeto.</p></li>
+</ul>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.materials.Lambertian.Lambertian.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/materials/Lambertian.html#Lambertian.scatter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Lambertian.Lambertian.scatter" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é gerado de forma aleatória, mas raios mais próximos da normal do objeto atingido são mais prováveis.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio que atingiu o objeto.</p></li>
+<li><p>rec: HitRecord - Informações do objeto atingido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 </dd></dl>
 
@@ -134,7 +198,23 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.materials.Material.Material.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/materials/Material.html#Material.scatter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Material.Material.scatter" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Gera um raio novo (possivelmente) a partir do raio que atingiu o objeto.</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio que atingiu o objeto.</p></li>
+<li><p>rec: HitRecord - Informações do objeto atingido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 </dd></dl>
 
@@ -145,10 +225,35 @@
 <dt class="sig sig-object py" id="src.lib.materials.Metal.Metal">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.lib.materials.Metal.</span></span><span class="sig-name descname"><span class="pre">Metal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">albedo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/lib/materials/Metal.html#Metal"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Metal.Metal" title="Link permanente para esta definição"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Material</span></code></p>
+<p>Construtor da classe Metal (metálico/reflexivo).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>albedo: Color - Cor do objeto.</p></li>
+<li><p>fuzz: float - Grau de reflexividade do objeto. Quanto maior, mais difuso (aleatório).</p></li>
+</ul>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.lib.materials.Metal.Metal.scatter">
 <span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ray</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.lib.html#src.lib.HitRecord.HitRecord" title="src.lib.HitRecord.HitRecord"><span class="pre">HitRecord</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.html#src.lib.Ray.Ray" title="src.lib.Ray.Ray"><span class="pre">Ray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="src.lib.vec.html#src.lib.vec.Vec3.Color" title="src.lib.vec.Vec3.Color"><span class="pre">Color</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/lib/materials/Metal.html#Metal.scatter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#src.lib.materials.Metal.Metal.scatter" title="Link permanente para esta definição"></a></dt>
-<dd></dd></dl>
+<dd><p>Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é a reflexão do raio sobre a superfície do objeto. Se fuzz &gt; 0, o refletido não será perfeito, terá um fator aleatório somado à ele (quão maior o fuzz, mais aleatório).</p>
+<p>—</p>
+<p>Parâmetros:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ray: Ray - Raio que atingiu o objeto.</p></li>
+<li><p>rec: HitRecord - Informações do objeto atingido.</p></li>
+</ul>
+</div></blockquote>
+<p>—</p>
+<p>Retorno:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
 
 </dd></dl>
 

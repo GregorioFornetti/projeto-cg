@@ -80,9 +80,36 @@
 <div class="viewcode-block" id="Lambertian"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Lambertian.Lambertian">[documentos]</a><span class="k">class</span> <span class="nc">Lambertian</span><span class="p">(</span><span class="n">Material</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">albedo</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe Lambertian (difuso).</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - albedo: Color - Cor do objeto.</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span> <span class="o">=</span> <span class="n">albedo</span>
     
 <div class="viewcode-block" id="Lambertian.scatter"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Lambertian.Lambertian.scatter">[documentos]</a>    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray</span><span class="p">:</span> <span class="n">Ray</span><span class="p">,</span> <span class="n">rec</span><span class="p">:</span> <span class="n">HitRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;tuple[bool, Ray, Color]&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é gerado de forma aleatória, mas raios mais próximos da normal do objeto atingido são mais prováveis.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ray: Ray - Raio que atingiu o objeto.</span>
+
+<span class="sd">            - rec: HitRecord - Informações do objeto atingido.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Vec3</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">normal</span> <span class="o">+</span> <span class="n">Vec3</span><span class="o">.</span><span class="n">random_unit_vector</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">near_zero</span><span class="p">():</span>
             <span class="n">direction</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">normal</span>

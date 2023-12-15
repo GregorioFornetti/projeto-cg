@@ -81,9 +81,35 @@
 <div class="viewcode-block" id="Dielectric"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Dielectric.Dielectric">[documentos]</a><span class="k">class</span> <span class="nc">Dielectric</span><span class="p">(</span><span class="n">Material</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ir</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da classe Dielectric (vidro).</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+<span class="sd">        </span>
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ir: float - Índice de refração do vidro.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ir</span> <span class="o">=</span> <span class="n">ir</span>
     
 <div class="viewcode-block" id="Dielectric.scatter"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Dielectric.Dielectric.scatter">[documentos]</a>    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ray</span><span class="p">:</span> <span class="n">Ray</span><span class="p">,</span> <span class="n">rec</span><span class="p">:</span> <span class="n">HitRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;tuple[bool, Ray, Color]&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gera um novo raio a partir do raio que atingiu o objeto. O raio novo é a refração do raio sobre a superfície do objeto. Se não houver refração, o raio é refletido.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - ray: Ray - Raio que atingiu o objeto.</span>
+
+<span class="sd">            - rec: HitRecord - Informações do objeto atingido.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - tuple[bool, Ray, Color] - Tupla contendo se o raio foi espalhado, o raio espalhado e a cor do raio espalhado.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">attenuation</span> <span class="o">=</span> <span class="n">Color</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
         <span class="n">refraction_ratio</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ir</span> <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">front_face</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">ir</span>
 
@@ -102,6 +128,23 @@
     
 <div class="viewcode-block" id="Dielectric.reflectance"><a class="viewcode-back" href="../../../../src.lib.materials.html#src.lib.materials.Dielectric.Dielectric.reflectance">[documentos]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">reflectance</span><span class="p">(</span><span class="n">cosine</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ref_idx</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Calcula a refletividade de um material.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - cosine: float - Cosseno do ângulo de incidência.</span>
+
+<span class="sd">            - ref_idx: float - Índice de refração do material.</span>
+<span class="sd">        </span>
+<span class="sd">        ---</span>
+
+<span class="sd">        Retorno:</span>
+
+<span class="sd">            - float - Refletividade do material.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">r0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ref_idx</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ref_idx</span><span class="p">)</span>
         <span class="n">r0</span> <span class="o">=</span> <span class="n">r0</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="k">return</span> <span class="n">r0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span></div></div>
