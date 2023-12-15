@@ -37,6 +37,7 @@ A documentação do código criado pode ser [acessado online](https://gregoriofo
 - [Pillow](https://pypi.org/project/Pillow/): para salvar e ler imagens em diversos formatos.
 - [Sphinx](https://www.sphinx-doc.org/pt_BR/master/): gerador de documentação a partir dos comentários de documentação incluídos no próprio código.
 - [tqdm](https://tqdm.github.io/): para indicar progresso das operações/funções mais demoradas.
+- [opencv](https://opencv.org/): para gerar o vídeo da animação a partir dos frames
 
 ### Instalação
 
