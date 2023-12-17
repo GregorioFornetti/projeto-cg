@@ -1,3 +1,5 @@
+from typing import Union
+
 from lib.HittableList import HittableList
 from lib.objects.Model import Model
 from lib.objects.Sphere import Sphere
@@ -5,10 +7,11 @@ from lib.materials.Metal import Metal
 from lib.materials.Lambertian import Lambertian
 from lib.vec.Vec3 import Vec3, Point3, Color
 from lib.Camera import Camera
+from lib.CameraMulti import CameraMulti
 
 class Animation:
 
-    def __init__(self, image_width: int, samples_per_pixel: int, max_depth: int):
+    def __init__(self, image_width: int, samples_per_pixel: int, max_depth: int, num_cores: int):
         '''
         Construtor da animação. A animação consiste em um cubo metálico (reflexivo) no centro (0,0,0) e ao redor dele terão duas esferas difusas que giram em torno do cubo. A câmera também gira em torno do cubo.
 
@@ -21,10 +24,13 @@ class Animation:
             - samples_per_pixel: int - Quantidade de amostras (raios) por pixel.
 
             - max_depth: int - Quantidade máxima de reflexões/refrações de um raio.
+
+            - num_cores: int - Número de cores a serem utilizadas na renderização.
         '''
         self.image_width = image_width
         self.samples_per_pixel = samples_per_pixel
         self.max_depth = max_depth
+        self.num_cores = num_cores
         
         # Configurações da animação:
         self.FRAMES_PER_SECOND = 24
@@ -53,15 +59,27 @@ class Animation:
 
         self.camera_initial_position = Point3([0, 2, 5])
 
-        self.camera = Camera(
-            image_width=self.image_width,
-            samples_per_pixel=self.samples_per_pixel,
-            max_depth=self.max_depth,
-            vfov=40,
-            lookfrom=self.camera_initial_position,
-            lookat=Point3([0, 0, 0]),
-            vup=Vec3([0, 1, 0])
-        )
+        if self.num_cores == 1:
+            self.camera = Camera(
+                image_width=self.image_width,
+                samples_per_pixel=self.samples_per_pixel,
+                max_depth=self.max_depth,
+                vfov=40,
+                lookfrom=self.camera_initial_position,
+                lookat=Point3([0, 0, 0]),
+                vup=Vec3([0, 1, 0])
+            )
+        else:
+            self.camera = CameraMulti(
+                image_width=self.image_width,
+                samples_per_pixel=self.samples_per_pixel,
+                max_depth=self.max_depth,
+                vfov=40,
+                lookfrom=self.camera_initial_position,
+                lookat=Point3([0, 0, 0]),
+                vup=Vec3([0, 1, 0]),
+                num_cores=self.num_cores
+            )
     
     def generate_frame(self, frame_number: int, save_path: str):
         '''

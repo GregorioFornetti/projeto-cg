@@ -84,6 +84,10 @@ class Triangle(Hittable):
             self.__normals = np.array(normals)
         else:
             self.__normals = None
+        
+        v1_to_v2 = self.vertex_2 - self.vertex_1
+        v1_to_v3 = self.vertex_3 - self.vertex_1
+        self.normal = v1_to_v2.cross(v1_to_v3)
     
     @property
     def vertexes(self) -> np.ndarray:
@@ -167,18 +171,14 @@ class Triangle(Hittable):
 
             - tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu a triângulo e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja a triângulo, o registro de acerto é None.
         '''
-        # Descobrindo o vetor normal
-        v1_to_v2 = self.vertex_2 - self.vertex_1
-        v1_to_v3 = self.vertex_3 - self.vertex_1
-        normal = v1_to_v2.cross(v1_to_v3)
 
         # Descobrindo o valor P: intersecção do raio com o plano formado pelo triângulo
-        normal_dot_ray_dir = normal.dot(ray.direction)
+        normal_dot_ray_dir = self.normal.dot(ray.direction)
         if normal_dot_ray_dir == 0:
             return False, None  # O raio é paralelo ao plano
         
-        d = -normal.dot(self.vertex_1)
-        t = -(normal.dot(ray.origin) + d) / normal_dot_ray_dir
+        d = -self.normal.dot(self.vertex_1)
+        t = -(self.normal.dot(ray.origin) + d) / normal_dot_ray_dir
 
         if t not in t_interval:
             return False, None  # O triângulo está atrás do raio
@@ -191,23 +191,23 @@ class Triangle(Hittable):
         edge_1 = self.vertex_2 - self.vertex_1
         vp1= intersect_point - self.vertex_1
         c = edge_1.cross(vp1)
-        if normal.dot(c) < 0:
+        if self.normal.dot(c) < 0:
             return False, None
         
         edge_2 = self.vertex_3 - self.vertex_2
         vp2= intersect_point - self.vertex_2
         c = edge_2.cross(vp2)
-        if normal.dot(c) < 0:
+        if self.normal.dot(c) < 0:
             return False, None
 
         edge_3 = self.vertex_1 - self.vertex_3
         vp3= intersect_point - self.vertex_3
         c = edge_3.cross(vp3)
-        if normal.dot(c) < 0:
+        if self.normal.dot(c) < 0:
             return False, None
         
         if self.__normals is None:
-            return True, HitRecord(intersect_point, normal, t, ray, self.__material)
+            return True, HitRecord(intersect_point, self.normal, t, ray, self.__material)
         else:
             # Calculando as coordenadas baricêntricas
             w1, w2, w3 = barycentric(self.vertex_1, self.vertex_2, self.vertex_3, intersect_point)
