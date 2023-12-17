@@ -8,31 +8,10 @@ if __name__ == '__main__':
     from Animation import Animation
     from time import time
     import os
+    from resolutions import resolutions as possible_configs
 
     qnt_threads = int(input('Número de threads a serem criadas (digite um número): '))
 
-    possible_configs = {
-        'test': {
-            'image_width': 100,
-            'samples_per_pixel': 5,
-            'max_depth': 10
-        },
-        'low': {
-            'image_width': 200,
-            'samples_per_pixel': 10,
-            'max_depth': 10
-        },
-        'medium': {
-            'image_width': 400,
-            'samples_per_pixel': 100,
-            'max_depth': 50
-        },
-        'high': {
-            'image_width': 1280,  # HD - 720p
-            'samples_per_pixel': 100,
-            'max_depth': 50
-        }
-    }
     possible_configs_keys = list(possible_configs.keys())
 
     for i in range(len(possible_configs_keys)):
