@@ -177,14 +177,18 @@ class CameraMulti:
         image = Image(self.image_width, self.image_height)
         all_processes: 'list[Process]' = []
         queue = Queue()
+        progress_queue = Queue()
 
         step = int(self.image_height / self.num_cores) + 1
         for i in range(self.num_cores):
             starting_line = step * i
             end_line = min(starting_line + step, self.image_height)
-            process = Process(target=render_pixel, args=(self, world, starting_line, end_line, queue))
+            process = Process(target=render_pixel, args=(self, world, starting_line, end_line, queue, progress_queue))
             all_processes.append(process)
             process.start()
+        
+        for _ in tqdm(range(self.image_height)):
+            progress_queue.get()
         
         for _ in range(self.num_cores):
             starting_line, end_line, pixels = queue.get()
@@ -233,7 +237,7 @@ class CameraMulti:
         return (px * self.pixel_delta_u) + (py * self.pixel_delta_v)
 
 
-def render_pixel(camera: CameraMulti, world: HittableList, starting_line: int, end_line: int, queue: Queue) -> Color:
+def render_pixel(camera: CameraMulti, world: HittableList, starting_line: int, end_line: int, queue: Queue, progress_queue: Queue) -> Color:
     '''
     Renderiza um pixel da imagem.
     '''
@@ -246,5 +250,6 @@ def render_pixel(camera: CameraMulti, world: HittableList, starting_line: int, e
                 ray = camera.get_ray(i, j)
                 pixel_color += camera.ray_color(ray, camera.max_depth, world)
             pixels[j - starting_line].append(transform_color(pixel_color, camera.samples_per_pixel))
+        progress_queue.put(1)
         
     queue.put((starting_line, end_line, pixels))
