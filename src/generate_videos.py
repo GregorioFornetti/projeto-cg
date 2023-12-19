@@ -48,7 +48,9 @@ for folder_name in possible_resolutions:
         continue
 
     for image in images:
-        final_video.write(cv2.imread(os.path.join(image_folder, image)))
+        current_image = cv2.imread(os.path.join(image_folder, image))
+        rescaled_image = cv2.resize(current_image, (1280, 720), interpolation=cv2.INTER_AREA)
+        final_video.write(rescaled_image)
 
 cv2.destroyAllWindows()
 final_video.release()
