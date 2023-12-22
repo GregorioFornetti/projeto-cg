@@ -23,6 +23,14 @@ src.lib.Camera module
    :undoc-members:
    :show-inheritance:
 
+src.lib.CameraMulti module
+--------------------------
+
+.. automodule:: src.lib.CameraMulti
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 src.lib.HitRecord module
 ------------------------
 

@@ -1,3 +1,7 @@
+'''
+Configurações de resolução de animações disponíveis no sistema.
+'''
+
 resolutions = {
     'test': {
         'image_width': 100,

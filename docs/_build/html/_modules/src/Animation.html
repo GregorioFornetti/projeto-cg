@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.Animation &mdash; documentação CG </title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">projeto-cg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">src.Animation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte para src.Animation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">lib.HittableList</span> <span class="kn">import</span> <span class="n">HittableList</span>
+<span class="kn">from</span> <span class="nn">lib.objects.Model</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">lib.objects.Sphere</span> <span class="kn">import</span> <span class="n">Sphere</span>
+<span class="kn">from</span> <span class="nn">lib.materials.Metal</span> <span class="kn">import</span> <span class="n">Metal</span>
+<span class="kn">from</span> <span class="nn">lib.materials.Lambertian</span> <span class="kn">import</span> <span class="n">Lambertian</span>
+<span class="kn">from</span> <span class="nn">lib.vec.Vec3</span> <span class="kn">import</span> <span class="n">Vec3</span><span class="p">,</span> <span class="n">Point3</span><span class="p">,</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">lib.Camera</span> <span class="kn">import</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">lib.CameraMulti</span> <span class="kn">import</span> <span class="n">CameraMulti</span>
+
+<div class="viewcode-block" id="Animation"><a class="viewcode-back" href="../../src.html#src.Animation.Animation">[documentos]</a><span class="k">class</span> <span class="nc">Animation</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">samples_per_pixel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_cores</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Construtor da animação. A animação consiste em um cubo metálico (reflexivo) no centro (0,0,0) e ao redor dele terão duas esferas difusas que giram em torno do cubo. A câmera também gira em torno do cubo.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - image_width: int - Largura da imagem em pixels.</span>
+
+<span class="sd">            - samples_per_pixel: int - Quantidade de amostras (raios) por pixel.</span>
+
+<span class="sd">            - max_depth: int - Quantidade máxima de reflexões/refrações de um raio.</span>
+
+<span class="sd">            - num_cores: int - Número de cores (núcleos / subprocessos) a serem utilizadas na renderização.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_width</span> <span class="o">=</span> <span class="n">image_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples_per_pixel</span> <span class="o">=</span> <span class="n">samples_per_pixel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span> <span class="o">=</span> <span class="n">num_cores</span>
+        
+        <span class="c1"># Configurações da animação:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRAMES_PER_SECOND</span> <span class="o">=</span> <span class="mi">24</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ANIMATION_DURATION</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Em segundos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SPHERES_ROTATION_SPEED</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># A cada 5 segundos, as esferas dão 2 voltas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CAMERA_ROTATION_SPEED</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># A cada 5 segundos, a câmera se move 1 </span>
+
+        <span class="c1"># Construindo a cena inicial:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cube</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="s2">&quot;objs/Cube.obj&quot;</span><span class="p">,</span> <span class="n">Metal</span><span class="p">(</span><span class="n">Color</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+            <span class="n">Point3</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">Lambertian</span><span class="p">(</span><span class="n">Color</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]))</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">second_sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+            <span class="n">Point3</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">Lambertian</span><span class="p">(</span><span class="n">Color</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]))</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">floor</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+            <span class="n">Point3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> 
+            <span class="mi">100</span><span class="p">,</span>
+            <span class="n">Lambertian</span><span class="p">(</span><span class="n">Color</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]))</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_initial_position</span> <span class="o">=</span> <span class="n">Point3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">(</span>
+                <span class="n">image_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_width</span><span class="p">,</span>
+                <span class="n">samples_per_pixel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">samples_per_pixel</span><span class="p">,</span>
+                <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
+                <span class="n">vfov</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                <span class="n">lookfrom</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">camera_initial_position</span><span class="p">,</span>
+                <span class="n">lookat</span><span class="o">=</span><span class="n">Point3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                <span class="n">vup</span><span class="o">=</span><span class="n">Vec3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">CameraMulti</span><span class="p">(</span>
+                <span class="n">image_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_width</span><span class="p">,</span>
+                <span class="n">samples_per_pixel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">samples_per_pixel</span><span class="p">,</span>
+                <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
+                <span class="n">vfov</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                <span class="n">lookfrom</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">camera_initial_position</span><span class="p">,</span>
+                <span class="n">lookat</span><span class="o">=</span><span class="n">Point3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                <span class="n">vup</span><span class="o">=</span><span class="n">Vec3</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                <span class="n">num_cores</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span>
+            <span class="p">)</span>
+    
+<div class="viewcode-block" id="Animation.generate_frame"><a class="viewcode-back" href="../../src.html#src.Animation.Animation.generate_frame">[documentos]</a>    <span class="k">def</span> <span class="nf">generate_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gera um frame da animação.</span>
+
+<span class="sd">        ---</span>
+
+<span class="sd">        Parâmetros:</span>
+
+<span class="sd">            - frame_number: int - Número do frame atual.</span>
+
+<span class="sd">            - save_path: str - Caminho para salvar a imagem.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Calculando o tempo atual da animação:</span>
+        <span class="n">current_time</span> <span class="o">=</span> <span class="n">frame_number</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRAMES_PER_SECOND</span>
+
+        <span class="c1"># Atualizando posição da camera</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">lookfrom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_initial_position</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">current_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">CAMERA_ROTATION_SPEED</span> <span class="o">*</span> <span class="mi">360</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Atualizando posição das esferas</span>
+        <span class="n">new_first_sphere</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_sphere</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">current_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">SPHERES_ROTATION_SPEED</span> <span class="o">*</span> <span class="mi">360</span>
+        <span class="p">)</span>
+
+        <span class="n">new_second_sphere</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">second_sphere</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">current_time</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">SPHERES_ROTATION_SPEED</span> <span class="o">*</span> <span class="mi">360</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Criando a cena</span>
+        <span class="n">world</span> <span class="o">=</span> <span class="n">HittableList</span><span class="p">()</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cube</span><span class="p">)</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_first_sphere</span><span class="p">)</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_second_sphere</span><span class="p">)</span>
+        <span class="n">world</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">floor</span><span class="p">)</span>
+
+        <span class="c1"># Renderizando a imagem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gregório Fornetti Azevedo.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
