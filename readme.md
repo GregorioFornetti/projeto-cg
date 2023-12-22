@@ -39,10 +39,42 @@ Além disso, a animação foi gerada em diversas configurações de qualidade di
 As configurações usadas foram as seguintes:
 
 - **test** (COLOCAR LINK DO YOUTUBE)
-  - **Largura:**
-  - **Altura:**
-  - **Raios (amostras) por pixel:**
-  - **Profundidade máxima:**
+  - **Largura:** 100
+  - **Altura:** 56
+  - **Raios (amostras) por pixel:** 1
+  - **Profundidade máxima:** 5
+- **very-very-low** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 100
+  - **Altura:** 56
+  - **Raios (amostras) por pixel:** 5
+  - **Profundidade máxima:** 10
+- **very-low** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 200
+  - **Altura:** 112
+  - **Raios (amostras) por pixel:** 5
+  - **Profundidade máxima:** 10
+- **low** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 200
+  - **Altura:** 112
+  - **Raios (amostras) por pixel:** 10
+  - **Profundidade máxima:** 10
+- **medium-low** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 200
+  - **Altura:** 112
+  - **Raios (amostras) por pixel:** 50
+  - **Profundidade máxima:** 20
+- **medium-low+** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 400
+  - **Altura:** 225
+  - **Raios (amostras) por pixel:** 50
+  - **Profundidade máxima:** 20
+- **medium** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:** 400
+  - **Altura:** 225
+  - **Raios (amostras) por pixel:** 100
+  - **Profundidade máxima:** 50
+
+O vídeo final com todas as animações comparadas também está disponível no YouTube **COLOCAR LINK DO YOUTUBE**
 
 ## Atendimento dos requisitos
 
@@ -69,6 +101,10 @@ A documentação do código criado pode ser [acessado online](https://gregoriofo
 ### Instalação
 
 Para conseguir executar o projeto, é necessário ter instalado o Python e todas as bibliotecas citadas. Para instalar mais facilmente as bibliotecas necessárias, foi criado o arquivo `requirements.txt`, e utilizando o pip (sistema de gerenciamento de pacotes do Python), é possível instalar todas as bibliotecas usando o comando `pip install -r requirements.txt`
+
+### Mais informações
+
+Detalhes a respeito do código podem ser consultados no README.md da pasta src. **COLOCAR LINK**
 
 
 ## Sobre geração de documentação usando Sphinx
