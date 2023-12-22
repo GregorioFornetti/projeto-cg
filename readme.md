@@ -102,6 +102,12 @@ A documentação do código criado pode ser [acessado online](https://gregoriofo
 
 Para conseguir executar o projeto, é necessário ter instalado o Python e todas as bibliotecas citadas. Para instalar mais facilmente as bibliotecas necessárias, foi criado o arquivo `requirements.txt`, e utilizando o pip (sistema de gerenciamento de pacotes do Python), é possível instalar todas as bibliotecas usando o comando `pip install -r requirements.txt`
 
-### Mais informações
+### Organização do repositório
 
-Detalhes a respeito do código podem ser consultados no README.md da pasta src. **COLOCAR LINK**
+O repositório foi separado em alguns outros subdiretórios:
+
+- **animation_frames:** pasta contendo os frames (imagens) necessários para compor as animações. Esta pasta guarda o resultado da execução do código principal (`src/main.py`). Este subdiretório é separado em várias pastas, cada pasta contém os frames de uma configuração específica. Por exemplo, o caminho `animation_frames/low` armazenará todos os frames da animação na configuração `low`.
+- **animations:** armazena as animações (vídeos). Estes vídeos são compostos pelos frames existentes no subdiretório `animation_frames`.
+- **docs:** arquivos da documentação. A documentação final pode ser [acessada online](https://gregoriofornetti.github.io/projeto-cg/docs/_build/html/index.html)
+- **objs:** pasta contendo os arquivos `.obj` necessários para carregar modelos (objetos) no código principal. O único objeto que precisa de um modelo em nossa animação é o cubo, disponível em `objs/Cube.obj`.
+- **src:** todo código fonte está disponível nesse subdiretório. Para mais informações da organização do código fonte, [acesse o readme.md do código fonte](https://github.com/GregorioFornetti/projeto-cg/blob/main/src/readme.md).
