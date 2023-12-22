@@ -12,7 +12,7 @@ Vinicius Gabriel Nanini da Silva - RA: 795181
 
 Rodrigo Henrique Amaral Araujo - RA: 792241
 
-## Descrição do trabalho
+## Descrição original do trabalho
 
 O objetivo desta atividade é o desenvolvimento de uma animação utilizando as implementações desenvolvidas em aula.
 
@@ -24,6 +24,33 @@ O projeto será avaliado considerando os seguinte requisitos:
 - Atendimento aos requisitos;
 - Documentação do código e de apesentação do projeto;
 - Qualidade visual final da animação;
+
+## Animação proposta
+
+Consistirá em uma cena com quatro objetos diferentes. Um cubo metálico (reflexivo) no centro da cena com duas esferas difusas próximos a ele. Há também uma grande esfera logo abaixo desses três objetos, simulando um piso. As duas esferas rotacionam ao redor do cubo reflexivo. A câmera está posicionada um pouco acima dos objetos, e esta rotaciona ao redor do cubo também (só que mais distante do que as duas esferas), sempre olhando para o centro da cena, onde está posicionado o cubo.
+
+Além disso, a animação foi gerada em diversas configurações de qualidade diferentes para fazer um comparativo. Cada configuração possui valores diferentes para os seguintes atributos:
+
+- **Largura:** quantidade de pixel em largura (número de pixels por linha)
+- **Altura:** quantidade de pixel em altura (número de pixels por coluna)
+- **Raios (amostras) por pixel:** quantidade de raios luminosos gerados por pixel da imagem. Para cada pixel serão gerados raios luminosos aleatórios dentro da região daquele pixel.
+- **Profundidade máxima:** a profundidade máxima que a recursão de raios luminosos pode chegar. Essa recursão é gerada a partir da reflexão dos objetos, que pode gerar um novo raio luminoso, este podendo bater em um objeto e refletir novamente, e assim por diante.
+
+As configurações usadas foram as seguintes:
+
+- **test** (COLOCAR LINK DO YOUTUBE)
+  - **Largura:**
+  - **Altura:**
+  - **Raios (amostras) por pixel:**
+  - **Profundidade máxima:**
+
+## Atendimento dos requisitos
+
+- [ ] **O projeto deve gerar uma animação com pelo menos 5 segundos:** a animação final pode ser acessada no YouTube **COLOCAR LINK DO YOUTUBE**
+- [x] **a geração das imagens deve utilizar as implementações dos membros do grupo:** a implementação vem das atividades de um dos membros do grupo
+- [x] **Utilize pelo menos 3 objetos sendo pelo menos um deles formado por triângulos:** foram usados um cubo e três esferas (totalizando quatro objetos). O cubo é um objeto formado por triângulos (cada face do cubo é formada por dois triângulos)
+- [x] **Utilize materiais difusos e reflexivos:** as três esferas utilizam materiais difusos e o cubo utiliza material reflexivo (metálico)
+- [x] **Faça pelo menos um movimento com a câmera e outro com pelo menos um dos objetos:** duas esferas rotacionam ao redor do cubo e a câmera também rotaciona ao redor do cubo
 
 ## Detalhes sobre a implementação
 
