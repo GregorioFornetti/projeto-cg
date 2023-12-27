@@ -40,7 +40,7 @@ resolutions = {
     },
     'high': {
         'image_width': 1280,  # HD - 720p
-        'samples_per_pixel': 100,
+        'samples_per_pixel': 20,
         'max_depth': 50
     }
 }
