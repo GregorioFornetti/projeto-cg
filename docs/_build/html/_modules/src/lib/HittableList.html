@@ -71,10 +71,13 @@
              
   <h1>Código fonte para src.lib.HittableList</h1><div class="highlight"><pre>
 <span></span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
 <span class="kn">from</span> <span class="nn">lib.objects.Hittable</span> <span class="kn">import</span> <span class="n">Hittable</span>
 <span class="kn">from</span> <span class="nn">lib.Ray</span> <span class="kn">import</span> <span class="n">Ray</span>
 <span class="kn">from</span> <span class="nn">lib.HitRecord</span> <span class="kn">import</span> <span class="n">HitRecord</span>
 <span class="kn">from</span> <span class="nn">lib.Interval</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="kn">from</span> <span class="nn">lib.objects.Model</span> <span class="kn">import</span> <span class="n">Model</span>
 
 
 <div class="viewcode-block" id="HittableList"><a class="viewcode-back" href="../../../src.lib.html#src.lib.HittableList.HittableList">[documentos]</a><span class="k">class</span> <span class="nc">HittableList</span><span class="p">:</span>
@@ -86,7 +89,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Hittable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     
-<div class="viewcode-block" id="HittableList.add"><a class="viewcode-back" href="../../../src.lib.html#src.lib.HittableList.HittableList.add">[documentos]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">Hittable</span><span class="p">):</span>
+<div class="viewcode-block" id="HittableList.add"><a class="viewcode-back" href="../../../src.lib.html#src.lib.HittableList.HittableList.add">[documentos]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Hittable</span><span class="p">,</span> <span class="n">Model</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Adiciona um objeto à lista de objetos que podem ser atingidos por um raio.</span>
 
@@ -96,7 +99,11 @@
 
 <span class="sd">            - obj: Hittable - Objeto a ser adicionado.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Model</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">faces</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="HittableList.clear"><a class="viewcode-back" href="../../../src.lib.html#src.lib.HittableList.HittableList.clear">[documentos]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>

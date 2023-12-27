@@ -52,7 +52,8 @@ for folder_name in tqdm(possible_resolutions):
 
     for image in images:
         current_image = cv2.imread(os.path.join(image_folder, image))
-        heigth, width = current_image.shape[:2]
+        height, width = current_image.shape[:2]
+        width = current_image.shape[1]
         rescaled_image = cv2.resize(current_image, (1280, 720), interpolation=cv2.INTER_AREA)
 
         text_color = (0, 0, 0)

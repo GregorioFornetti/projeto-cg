@@ -1,9 +1,9 @@
 '''
 Código principal para gerar a animação.
 
-Nele, você escolherá a qualidade da animação e os frames que serão gerados.
-Como existem mais de uma pessoa no projeto, é possível separar a geração dos frames entre as pessoas.
+Nele, você poderá escolher a quantidade de subprocessos que serão usados (para aproveitar ao máximo a CPU, mas, quão maior, mais utilizará do seu computador), qualidade da animação (diponíveis em resolutions.py) e os frames que serão gerados.
 '''
+
 if __name__ == '__main__':
     from Animation import Animation
     from time import time

@@ -70,7 +70,11 @@ class CameraMulti:
 
     def __init__(self, image_width: int = 400, samples_per_pixel: int = 100, max_depth: int = 10, vfov: float = 40.0, lookfrom: Point3 = Point3([0, 0, -1]), lookat: Point3 = Point3([0, 0, 0]), vup: Vec3 = Vec3([0, 1, 0]), num_cores: int = 4):
         '''
-        Construtor de uma câmera.
+        Construtor de uma câmera de multiprocessos. Utiliza a biblioteca multiprocessing para renderizar a imagem.
+
+        A imagem será dividida em partes iguais, cada uma renderizada por um processo.
+
+        Por exemplo, se num_cores = 4, então, a imagem será dividida em 4 partes iguais, cada uma renderizada por um processo.
 
         ---
 
@@ -158,6 +162,8 @@ class CameraMulti:
         '''
         Renderiza a cena (informada no mundo). Além de salvar em disco no formato PNG, também mostra a imagem (no notebook).
 
+        A renderização é feita utilizando multiprocessamento.
+
         ---
 
         Parâmetros:
@@ -183,7 +189,7 @@ class CameraMulti:
         for i in range(self.num_cores):
             starting_line = step * i
             end_line = min(starting_line + step, self.image_height)
-            process = Process(target=render_pixel, args=(self, world, starting_line, end_line, queue, progress_queue))
+            process = Process(target=render_lines, args=(self, world, starting_line, end_line, queue, progress_queue))
             all_processes.append(process)
             process.start()
         
@@ -237,9 +243,25 @@ class CameraMulti:
         return (px * self.pixel_delta_u) + (py * self.pixel_delta_v)
 
 
-def render_pixel(camera: CameraMulti, world: HittableList, starting_line: int, end_line: int, queue: Queue, progress_queue: Queue) -> Color:
+def render_lines(camera: CameraMulti, world: HittableList, starting_line: int, end_line: int, queue: Queue, progress_queue: Queue):
     '''
-    Renderiza um pixel da imagem.
+    Renderiza algumas linhas da imagem (usado para multiprocessamento).
+
+    ---
+
+    Parâmetros:
+
+        - camera: CameraMulti - Câmera que renderizará a imagem.
+
+        - world: HittableList - Lista de objetos que compõem a cena.
+
+        - starting_line: int - Linha inicial da imagem a ser renderizada.
+
+        - end_line: int - Linha final da imagem a ser renderizada.
+
+        - queue: Queue - Fila para retornar o resultado da renderização.
+
+        - progress_queue: Queue - Fila para indicar que uma linha foi renderizada, para atualizar a barra de progresso.
     '''
     pixels = []
     for j in range(starting_line, end_line):
@@ -250,6 +272,6 @@ def render_pixel(camera: CameraMulti, world: HittableList, starting_line: int, e
                 ray = camera.get_ray(i, j)
                 pixel_color += camera.ray_color(ray, camera.max_depth, world)
             pixels[j - starting_line].append(transform_color(pixel_color, camera.samples_per_pixel))
-        progress_queue.put(1)
+        progress_queue.put(1)  # Indica que uma linha foi renderizada, para atualizar a barra de progresso.
         
     queue.put((starting_line, end_line, pixels))

@@ -1,5 +1,5 @@
 '''
-Código para verificar quais frames estão faltando nas animações
+Script para verificar quais frames estão faltando nas animações.
 '''
 
 import os

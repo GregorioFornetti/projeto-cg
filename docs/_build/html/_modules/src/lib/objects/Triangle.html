@@ -156,6 +156,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">normals</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="n">v1_to_v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="n">v1_to_v3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="n">v1_to_v2</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v1_to_v3</span><span class="p">)</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">vertexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -239,18 +243,14 @@
 
 <span class="sd">            - tuple[bool, HitRecord] - Tupla contendo um booleano que indica se o raio atingiu a triângulo e um registro de acerto (hit record) com informações sobre o acerto. Caso o raio não atinja a triângulo, o registro de acerto é None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="c1"># Descobrindo o vetor normal</span>
-        <span class="n">v1_to_v2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
-        <span class="n">v1_to_v3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
-        <span class="n">normal</span> <span class="o">=</span> <span class="n">v1_to_v2</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v1_to_v3</span><span class="p">)</span>
 
         <span class="c1"># Descobrindo o valor P: intersecção do raio com o plano formado pelo triângulo</span>
-        <span class="n">normal_dot_ray_dir</span> <span class="o">=</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+        <span class="n">normal_dot_ray_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">normal_dot_ray_dir</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># O raio é paralelo ao plano</span>
         
-        <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span><span class="p">)</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">normal_dot_ray_dir</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">normal_dot_ray_dir</span>
 
         <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t_interval</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># O triângulo está atrás do raio</span>
@@ -263,23 +263,23 @@
         <span class="n">edge_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
         <span class="n">vp1</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">edge_1</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
         
         <span class="n">edge_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span>
         <span class="n">vp2</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">edge_2</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
 
         <span class="n">edge_3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span>
         <span class="n">vp3</span><span class="o">=</span> <span class="n">intersect_point</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">edge_3</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vp3</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
         
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__normals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">HitRecord</span><span class="p">(</span><span class="n">intersect_point</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__material</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">HitRecord</span><span class="p">(</span><span class="n">intersect_point</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__material</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Calculando as coordenadas baricêntricas</span>
             <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w3</span> <span class="o">=</span> <span class="n">barycentric</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertex_1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertex_3</span><span class="p">,</span> <span class="n">intersect_point</span><span class="p">)</span>
@@ -313,6 +313,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__vertexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">offset</span></div></div>
+    
 </pre></div>
 
            </div>
