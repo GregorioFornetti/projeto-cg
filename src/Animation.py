@@ -25,7 +25,7 @@ class Animation:
 
             - max_depth: int - Quantidade máxima de reflexões/refrações de um raio.
 
-            - num_cores: int - Número de cores a serem utilizadas na renderização.
+            - num_cores: int - Número de cores (núcleos / subprocessos) a serem utilizadas na renderização.
         '''
         self.image_width = image_width
         self.samples_per_pixel = samples_per_pixel
