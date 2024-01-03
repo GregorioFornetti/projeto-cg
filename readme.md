@@ -38,47 +38,52 @@ Além disso, a animação foi gerada em diversas configurações de qualidade di
 
 As configurações usadas foram as seguintes:
 
-- **test** (COLOCAR LINK DO YOUTUBE)
+- [**test**](https://www.youtube.com/watch?v=XqaAHe1WZMk)
   - **Largura:** 100
   - **Altura:** 56
   - **Raios (amostras) por pixel:** 1
   - **Profundidade máxima:** 5
-- **very-very-low** (COLOCAR LINK DO YOUTUBE)
+- [**very-very-low**](https://youtu.be/sq2sPqg9wNI)
   - **Largura:** 100
   - **Altura:** 56
   - **Raios (amostras) por pixel:** 5
   - **Profundidade máxima:** 10
-- **very-low** (COLOCAR LINK DO YOUTUBE)
+- [**very-low**](https://youtu.be/IS42AOsnhbk)
   - **Largura:** 200
   - **Altura:** 112
   - **Raios (amostras) por pixel:** 5
   - **Profundidade máxima:** 10
-- **low** (COLOCAR LINK DO YOUTUBE)
+- [**low**](https://youtu.be/iNogceeYqsE)
   - **Largura:** 200
   - **Altura:** 112
   - **Raios (amostras) por pixel:** 10
   - **Profundidade máxima:** 10
-- **medium-low** (COLOCAR LINK DO YOUTUBE)
+- [**medium-low**](https://youtu.be/EBGrV91h0k0)
   - **Largura:** 200
   - **Altura:** 112
   - **Raios (amostras) por pixel:** 50
   - **Profundidade máxima:** 20
-- **medium-low+** (COLOCAR LINK DO YOUTUBE)
+- [**medium-low+**](https://youtu.be/2VdY2cHUBMs)
   - **Largura:** 400
   - **Altura:** 225
   - **Raios (amostras) por pixel:** 50
   - **Profundidade máxima:** 20
-- **medium** (COLOCAR LINK DO YOUTUBE)
+- [**medium**](https://youtu.be/KLXJjOgrQpI)
   - **Largura:** 400
   - **Altura:** 225
   - **Raios (amostras) por pixel:** 100
   - **Profundidade máxima:** 50
+- [**high**]()
+  - **Largura:** 1280
+  - **Altura:** 720
+  - **Raios (amostras) por pixel:** 20
+  - **Profundidade máxima:** 50
 
-O vídeo final com todas as animações comparadas também está disponível no YouTube **COLOCAR LINK DO YOUTUBE**
+O vídeo final com todas as animações comparadas também está disponível no YouTube **COLOCAR LINK DO YOUTUBE**. Todos os vídeos produzidos estão em [uma playlist](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0)
 
 ## Atendimento dos requisitos
 
-- [ ] **O projeto deve gerar uma animação com pelo menos 5 segundos:** a animação final pode ser acessada no YouTube **COLOCAR LINK DO YOUTUBE**
+- [ ] **O projeto deve gerar uma animação com pelo menos 5 segundos:** a animação final pode ser acessada no YouTube **COLOCAR LINK DO YOUTUBE**. Todos os vídeos estão em [uma playlist do YouTube](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0).
 - [x] **a geração das imagens deve utilizar as implementações dos membros do grupo:** a implementação vem das atividades de um dos membros do grupo
 - [x] **Utilize pelo menos 3 objetos sendo pelo menos um deles formado por triângulos:** foram usados um cubo e três esferas (totalizando quatro objetos). O cubo é um objeto formado por triângulos (cada face do cubo é formada por dois triângulos)
 - [x] **Utilize materiais difusos e reflexivos:** as três esferas utilizam materiais difusos e o cubo utiliza material reflexivo (metálico)
