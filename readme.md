@@ -73,17 +73,17 @@ As configurações usadas foram as seguintes:
   - **Altura:** 225
   - **Raios (amostras) por pixel:** 100
   - **Profundidade máxima:** 50
-- [**high**]()
+- [**high**](https://youtu.be/NkhMKXVl0Lo)
   - **Largura:** 1280
   - **Altura:** 720
   - **Raios (amostras) por pixel:** 20
   - **Profundidade máxima:** 50
 
-O vídeo final com todas as animações comparadas também está disponível no YouTube **COLOCAR LINK DO YOUTUBE**. Todos os vídeos produzidos estão em [uma playlist](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0)
+O vídeo final com todas as animações comparadas também está [disponível no YouTube](https://youtu.be/qW2tl847k7w). Todos os vídeos produzidos estão em [uma playlist](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0)
 
 ## Atendimento dos requisitos
 
-- [ ] **O projeto deve gerar uma animação com pelo menos 5 segundos:** a animação final pode ser acessada no YouTube **COLOCAR LINK DO YOUTUBE**. Todos os vídeos estão em [uma playlist do YouTube](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0).
+- [x] **O projeto deve gerar uma animação com pelo menos 5 segundos:** a animação final pode ser acessada no [YouTube](https://youtu.be/qW2tl847k7w). Todos os vídeos estão em [uma playlist do YouTube](https://www.youtube.com/playlist?list=PLN4MpuNjcYOy1np2hyAWUkDHIRWvrexB0).
 - [x] **a geração das imagens deve utilizar as implementações dos membros do grupo:** a implementação vem das atividades de um dos membros do grupo
 - [x] **Utilize pelo menos 3 objetos sendo pelo menos um deles formado por triângulos:** foram usados um cubo e três esferas (totalizando quatro objetos). O cubo é um objeto formado por triângulos (cada face do cubo é formada por dois triângulos)
 - [x] **Utilize materiais difusos e reflexivos:** as três esferas utilizam materiais difusos e o cubo utiliza material reflexivo (metálico)
